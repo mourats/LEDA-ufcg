@@ -74,7 +74,7 @@ public class RepositorioProdutoArrayList {
 			throw new NullPointerException();
 		}
 		
-		produtos.remove(produtos.get(procurarIndice(produto.getCodigo())));
+		produtos.remove(produto);
 		produtos.add(produto);
 			
 	}

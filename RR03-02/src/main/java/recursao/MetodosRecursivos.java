@@ -4,31 +4,49 @@ public class MetodosRecursivos {
 
 	public int calcularSomaArray(int[] array){
 		int result = 0;
-		// TODO ESCREVA AQUI O CÓDIGO (USANDO RECURSAO) PARA CALCULAR A SOMA
-		// DOS EMENTOS DE UM ARRAY
+		
+		result = array.length > 0? calcularSomaArrayRec(array, 0): 0;
+		
 		return result;
 	}
+	
+	private int calcularSomaArrayRec(int[] array, int index) {
+		if(index+1 == array.length) {
+			return array[index];
+		}else {
+			return array[index] + calcularSomaArrayRec(array, index+1);
+		}
+	}
+	
+	//TAIL CALL
 	public long calcularFatorial(int n) {
+		
 		long result = 1;
-		// TODO ESCREVA AQUI O CÓDIGO (USANDO RECURSAO) PARA CALCULAR E IMPRIMIR
-		// O FATORIAL DO PARAMETRO
-		// DE ACORDO COM O QUE FOI MOSTRADO NO EXERCCICIO. OBSERVE QUE SENDO O
-		// METODO
-		// RECURSIVO, O FATORIAL DOS NUMEROS ANTERIORES TAMBEM VAO SER IMPRESSOS
+		
+		result = calcularFatorialRec(1, n);
+		
 		return result;
 	}
+	private long calcularFatorialRec(int sum, int n) {
+		if(n == 0) {
+			return sum;
+		}else {
+			return calcularFatorialRec(sum*n, n-1);
+		}
+	}
+	
+	
 
 	public int calcularFibonacci(int n) {
 		int result = 1;
-		// TODO ESCREVA AQUI O CÓDIGO (USANDO RECURSAO) PARA CALCULAR E IMPRIMIR
-		// O N-ESIMO TERMO
-		// DA SEQUENCIA DE FIBONACCI, QUE TEM A SEGUINTE LEI DE FORMACAO: O
-		// PRIMEIRO E SEGUNDO NUMEROS
-		// DA SEQUENCIA SÃO 1. A PARTIR DO TERCEIRO TERMO, CADA TERMO DA
-		// SEQUENCIA É DADO
-		// PELA SOMA DOS OUTROS DOIS ANTERIORES. OBSERVE QUE SENDO O METODO
-		// RECURSIVO, O FIBONACCI DOS NUMEROS ANTERIORES TAMBEM VAO SER
-		// IMPRESSOS
+		int termo = 1;
+		if(termo == n) {
+			return result;
+		}else {
+			termo++;
+			result += termo;
+		}
+		
 		return result;
 	}
 
@@ -62,6 +80,23 @@ public class MetodosRecursivos {
 		// TERMO
 		// DA PROGRESSAO GEOMETRICA, DADO O TERMO INICIAL E A RAZAO
 		return result;
+	}
+	
+	/*
+	 * LOCAL PARA TESTES PROPRIOS
+	 */
+	
+	public static void main(String[] args) {
+		
+		MetodosRecursivos recusivos  = new MetodosRecursivos();
+		
+		int[] array = {};
+		
+		int soma = recusivos.calcularSomaArray(array);
+		
+		long fat = recusivos.calcularFatorial(150);
+		
+		System.out.println(fat);
 	}
 	
 	

@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sorting.AbstractSorting;
+import sorting.simpleSorting.BubbleSort;
 
 public class StudentSortingTest {
 
@@ -20,10 +21,8 @@ public class StudentSortingTest {
 
 	@Before
 	public void setUp() {
-		populaVetorTamanhoPar(new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23,
-				31 });
-		populaVetorTamanhoImpar(new Integer[] { 6, 41, 32, 7, 26, 4, 37, 49,
-				11, 18, 36 });
+		populaVetorTamanhoPar(new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23, 31 });
+		populaVetorTamanhoImpar(new Integer[] { 6, 41, 32, 7, 26, 4, 37, 49, 11, 18, 36 });
 		populaVetorRepetido(new Integer[] { 4, 9, 3, 4, 0, 5, 1, 4 });
 		populaVetorIgual(new Integer[] { 6, 6, 6, 6, 6, 6 });
 
@@ -32,14 +31,13 @@ public class StudentSortingTest {
 
 	// // MÉTODOS AUXILIARES DA INICIALIZAÇÃO
 	/**
-	 * Método que inicializa a implementação a ser testada com a implementação
-	 * do aluno
+	 * Método que inicializa a implementação a ser testada com a implementação do
+	 * aluno
 	 */
 	private void getImplementation() {
-		// TODO O aluno deve instanciar sua implementação abaixo ao invés de
-		// null
-		this.implementation = null;
-		Assert.fail("Implementation not provided");
+
+		this.implementation = new BubbleSort<Integer>();
+		
 	}
 
 	public void populaVetorTamanhoPar(Integer[] arrayPadrao) {
@@ -51,13 +49,11 @@ public class StudentSortingTest {
 	}
 
 	public void populaVetorRepetido(Integer[] arrayPadrao) {
-		this.vetorValoresRepetidos = Arrays.copyOf(arrayPadrao,
-				arrayPadrao.length);
+		this.vetorValoresRepetidos = Arrays.copyOf(arrayPadrao, arrayPadrao.length);
 	}
 
 	public void populaVetorIgual(Integer[] arrayPadrao) {
-		this.vetorValoresIguais = Arrays
-				.copyOf(arrayPadrao, arrayPadrao.length);
+		this.vetorValoresIguais = Arrays.copyOf(arrayPadrao, arrayPadrao.length);
 	}
 
 	// FIM DOS METODOS AUXILIARES DA INICIALIZAÇÃO
@@ -66,8 +62,8 @@ public class StudentSortingTest {
 
 	public void genericTest(Integer[] array) {
 		Integer[] copy1 = {};
-		if(array.length > 0){
-			copy1 = Arrays.copyOf(array, array.length);			
+		if (array.length > 0) {
+			copy1 = Arrays.copyOf(array, array.length);
 		}
 		implementation.sort(array);
 		Arrays.sort(copy1);
@@ -103,7 +99,7 @@ public class StudentSortingTest {
 	/**
 	 * O ALUNO PODE IMPLEMENTAR METODOS DE ORDENAÇÃO TESTANDO O SORT COM TRES
 	 * ARGUMENTOS PARA TESTAR A ORDENACAO EM UM PEDAÇO DO ARRAY. DICA: PROCUREM
-	 * SEGUIR A ESTRUTURA DOS MÉTODOS DE TESTE ACIMA DESCRITOS, ORDENANDO APENAS
-	 * UMA PARTE DO ARRAY.
+	 * SEGUIR A ESTRUTURA DOS MÉTODOS DE TESTE ACIMA DESCRITOS, ORDENANDO APENAS UMA
+	 * PARTE DO ARRAY.
 	 */
 }

@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sorting.AbstractSorting;
-import sorting.simpleSorting.BubbleSort;
+import sorting.variationsOfSelectionsort.SimultaneousSelectionsort;
 
 public class StudentSortingTest {
 
@@ -36,7 +36,7 @@ public class StudentSortingTest {
 	 */
 	private void getImplementation() {
 
-		this.implementation = new BubbleSort<Integer>();
+		this.implementation = new SimultaneousSelectionsort<Integer>();
 		
 	}
 

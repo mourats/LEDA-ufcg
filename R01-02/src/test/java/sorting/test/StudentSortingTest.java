@@ -37,7 +37,7 @@ public class StudentSortingTest {
 	private void getImplementation() {
 
 		this.implementation = new SimultaneousSelectionsort<Integer>();
-		
+
 	}
 
 	public void populaVetorTamanhoPar(Integer[] arrayPadrao) {
@@ -70,6 +70,22 @@ public class StudentSortingTest {
 		Assert.assertArrayEquals(copy1, array);
 	}
 
+	public void delimitedTest(Integer[] array, int leftIndex, int rightIndex) {
+
+		Integer[] copy1 = {};
+		if (array.length > 0) {
+			copy1 = Arrays.copyOf(array, array.length);
+		}
+		implementation.sort(array, leftIndex, rightIndex);
+		Arrays.sort(copy1, leftIndex, rightIndex + 1);
+		/*
+		 * a implementação do Arrays.sort() é exclusiva com rightIndex passado, por isso
+		 * o +1.
+		 */
+
+		Assert.assertArrayEquals(copy1, array);
+	}
+
 	@Test
 	public void testSort01() {
 		genericTest(vetorTamPar);
@@ -95,11 +111,66 @@ public class StudentSortingTest {
 		genericTest(vetorValoresRepetidos);
 	}
 
-	// MÉTODOS QUE OS ALUNOS PODEM CRIAR
-	/**
-	 * O ALUNO PODE IMPLEMENTAR METODOS DE ORDENAÇÃO TESTANDO O SORT COM TRES
-	 * ARGUMENTOS PARA TESTAR A ORDENACAO EM UM PEDAÇO DO ARRAY. DICA: PROCUREM
-	 * SEGUIR A ESTRUTURA DOS MÉTODOS DE TESTE ACIMA DESCRITOS, ORDENANDO APENAS UMA
-	 * PARTE DO ARRAY.
-	 */
+	@Test
+	public void testSort06() {
+
+		int leftIndex = 0;
+		int rightIndex = vetorTamPar.length - 1;
+
+		while (leftIndex <= rightIndex) {
+			delimitedTest(vetorTamPar, leftIndex, rightIndex);
+			leftIndex++;
+			rightIndex--;
+		}
+	}
+
+	@Test
+	public void testSort07() {
+
+		int leftIndex = 0;
+		int rightIndex = vetorTamImpar.length - 1;
+
+		while (leftIndex <= rightIndex) {
+			delimitedTest(vetorTamImpar, leftIndex, rightIndex);
+			leftIndex++;
+			rightIndex--;
+		}
+	}
+
+	@Test
+	public void testSort08() {
+		int leftIndex = 0;
+		int rightIndex = vetorVazio.length - 1;
+
+		while (leftIndex <= rightIndex) {
+			delimitedTest(vetorVazio, leftIndex, rightIndex);
+			leftIndex++;
+			rightIndex--;
+		}
+	}
+
+	@Test
+	public void testSort09() {
+		int leftIndex = 0;
+		int rightIndex = vetorValoresIguais.length - 1;
+
+		while (leftIndex <= rightIndex) {
+			delimitedTest(vetorValoresIguais, leftIndex, rightIndex);
+			leftIndex++;
+			rightIndex--;
+		}
+	}
+
+	@Test
+	public void testSort10() {
+		int leftIndex = 0;
+		int rightIndex = vetorValoresRepetidos.length - 1;
+
+		while (leftIndex <= rightIndex) {
+			delimitedTest(vetorValoresRepetidos, leftIndex, rightIndex);
+			leftIndex++;
+			rightIndex--;
+		}
+	}
+
 }

@@ -16,35 +16,38 @@ public class SimultaneousSelectionsort<T extends Comparable<T>> extends Abstract
 
 	public void sort(T[] array, int leftIndex, int rightIndex) {
 
-		while (leftIndex < rightIndex) {
+		if (rightIndex > leftIndex) {
 
-			int minimo = leftIndex;
-			int maximo = rightIndex;
+			while (leftIndex < rightIndex) {
 
-			for (int j = leftIndex; j <= rightIndex; j++) {
+				int minimo = leftIndex;
+				int maximo = rightIndex;
 
-				if (array[j].compareTo(array[minimo]) < 0) {
-					minimo = j;
+				for (int j = leftIndex; j <= rightIndex; j++) {
+
+					if (array[j].compareTo(array[minimo]) < 0) {
+						minimo = j;
+					}
+
+					if (array[j].compareTo(array[maximo]) > 0) {
+						maximo = j;
+					}
 				}
 
-				if (array[j].compareTo(array[maximo]) > 0) {
-					maximo = j;
+				if (minimo == rightIndex) {
+					Util.swap(array, leftIndex, minimo);
+					Util.swap(array, rightIndex, maximo);
+
+				} else {
+					Util.swap(array, rightIndex, maximo);
+					Util.swap(array, leftIndex, minimo);
 				}
-			}
-			
-			if (minimo == rightIndex) {
-				Util.swap(array, leftIndex, minimo);
-				Util.swap(array, rightIndex, maximo);
 
-			} else {
-				Util.swap(array, rightIndex, maximo);
-				Util.swap(array, leftIndex, minimo);
+				leftIndex++;
+				rightIndex--;
 			}
 
-			leftIndex++;
-			rightIndex--;
 		}
-
 	}
 
 }

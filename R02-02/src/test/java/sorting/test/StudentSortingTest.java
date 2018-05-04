@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sorting.AbstractSorting;
-import sorting.divideAndConquer.threeWayQuicksort.ThreeWayQuickSort;
+import sorting.divideAndConquer.MergeSort;
 
 public class StudentSortingTest {
 
@@ -36,7 +36,7 @@ public class StudentSortingTest {
 	 */
 	private void getImplementation() {
 
-		this.implementation = new ThreeWayQuickSort<Integer>();
+		this.implementation = new MergeSort<Integer>();
 	}
 
 	public void populaVetorTamanhoPar(Integer[] arrayPadrao) {

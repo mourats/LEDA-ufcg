@@ -1,5 +1,7 @@
 package sorting.divideAndConquer;
 
+import java.util.Arrays;
+
 import sorting.AbstractSorting;
 
 /**
@@ -12,6 +14,24 @@ public class MergeSort<T extends Comparable<T>> extends AbstractSorting<T> {
 
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
+		
+		if (rightIndex > leftIndex && leftIndex >= 0 && rightIndex < array.length) {
+		
+			int middle = (leftIndex + rightIndex) / 2;
+			System.out.println("divisao : " + middle);
+			sort(array, leftIndex, middle);
+			sort(array, middle + 1, rightIndex);
+			merge(array, leftIndex, middle, rightIndex);
+		}
+	}
+
+	private void merge(T[] array, int leftIndex, int rightIndex, int middle) {
+		
+		System.out.println(Arrays.toString(array));
+		System.out.println(leftIndex);
+		System.out.println(middle);
+		System.out.println(rightIndex);
+		
 		
 	}
 }

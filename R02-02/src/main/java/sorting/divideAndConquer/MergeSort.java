@@ -14,24 +14,59 @@ public class MergeSort<T extends Comparable<T>> extends AbstractSorting<T> {
 
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		
-		if (rightIndex > leftIndex && leftIndex >= 0 && rightIndex < array.length) {
-		
-			int middle = (leftIndex + rightIndex) / 2;
-			System.out.println("divisao : " + middle);
-			sort(array, leftIndex, middle);
-			sort(array, middle + 1, rightIndex);
-			merge(array, leftIndex, middle, rightIndex);
-		}
+
+		if (array == null)
+			return;
+		if (array.length == 0)
+			return;
+		if (leftIndex < 0 || rightIndex < 0)
+			return;
+		if (leftIndex >= rightIndex)
+			return;
+		if (rightIndex >= array.length)
+			return;
+
+		int middle = (rightIndex + leftIndex) / 2;
+
+		sort(array, leftIndex, middle);
+		sort(array, middle + 1, rightIndex);
+
+		merge(array, leftIndex, rightIndex, middle);
+
 	}
 
-	private void merge(T[] array, int leftIndex, int rightIndex, int middle) {
+	private void merge(T[] array, int leftIndex, int rightIndex, int middleIndex) {
+
+		T[] arrayAux = Arrays.copyOf(array, array.length);
+
+		int begin = leftIndex;
+		int middle = middleIndex + 1;
+		int first = leftIndex;
 		
-		System.out.println(Arrays.toString(array));
-		System.out.println(leftIndex);
-		System.out.println(middle);
-		System.out.println(rightIndex);
-		
-		
+		while (begin <= middleIndex && middle <= rightIndex) {
+
+			if (arrayAux[middle].compareTo(arrayAux[begin]) > 0) {
+				array[first] = arrayAux[begin];
+				begin++;
+			} else {
+				array[first] = arrayAux[middle];
+				middle++;
+			}
+			first++;
+		}
+
+		while (begin <= middleIndex) {
+			array[first] = arrayAux[begin];
+			begin++;
+			first++;
+		}
+
+		while (middle <= rightIndex) {
+			array[first] = arrayAux[middle];
+			middle++;
+			first++;
+		}
+
 	}
+
 }

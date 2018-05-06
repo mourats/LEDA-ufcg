@@ -29,15 +29,13 @@ public class QuickSort<T extends Comparable<T>> extends AbstractSorting<T> {
 
 	private int quick(T[] array, int leftIndex, int rightIndex) {
 
-		T pivot = array[leftIndex];
-
 		int begin = leftIndex + 1;
 		int end = rightIndex;
 
 		while (begin <= end) {
-			if (array[begin].compareTo(pivot) <= 0)
+			if (array[begin].compareTo(array[leftIndex]) <= 0)
 				begin++;
-			else if (pivot.compareTo(array[end]) < 0)
+			else if (array[leftIndex].compareTo(array[end]) < 0)
 				end--;
 			else {
 				Util.swap(array, begin, end);
@@ -45,8 +43,8 @@ public class QuickSort<T extends Comparable<T>> extends AbstractSorting<T> {
 				end--;
 			}
 		}
-		array[leftIndex] = array[end];
-		array[end] = pivot;
+		
+		Util.swap(array, leftIndex, end);
 		return end;
 
 	}

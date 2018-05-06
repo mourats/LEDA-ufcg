@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sorting.AbstractSorting;
-import sorting.divideAndConquer.QuickSort;
+import sorting.divideAndConquer.threeWayQuicksort.ThreeWayQuickSort;
 
 public class StudentSortingTest {
 
@@ -21,7 +21,7 @@ public class StudentSortingTest {
 
 	@Before
 	public void setUp() {
-		populaVetorTamanhoPar(new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23, 31 });
+		populaVetorTamanhoPar(new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 22, 11 });
 		populaVetorTamanhoImpar(new Integer[] { 6, 41, 32, 7, 26, 4, 37, 49, 11, 18, 36 });
 		populaVetorRepetido(new Integer[] { 4, 9, 3, 4, 0, 5, 1, 4 });
 		populaVetorIgual(new Integer[] { 6, 6, 6, 6, 6, 6 });
@@ -36,7 +36,7 @@ public class StudentSortingTest {
 	 */
 	private void getImplementation() {
 
-		this.implementation = new QuickSort<Integer>();
+		this.implementation = new ThreeWayQuickSort<Integer>();
 
 	}
 
@@ -67,7 +67,9 @@ public class StudentSortingTest {
 		}
 		implementation.sort(array);
 		Arrays.sort(copy1);
+		
 		Assert.assertArrayEquals(copy1, array);
+
 	}
 
 	public void delimitedTest(Integer[] array, int leftIndex, int rightIndex) {
@@ -173,4 +175,17 @@ public class StudentSortingTest {
 		}
 	}
 
+	@Test
+	public void testSort11() {
+
+		int quantidade = 30000;
+		Integer[] vetor = new Integer[quantidade];
+
+		for (int i = 0; i < vetor.length; i++) {
+			vetor[i] = (int) (Math.random() * quantidade);
+		}
+
+		genericTest(vetor);
+
+	}
 }

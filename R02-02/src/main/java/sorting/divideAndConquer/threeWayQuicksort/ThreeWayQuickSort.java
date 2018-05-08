@@ -31,29 +31,27 @@ public class ThreeWayQuickSort<T extends Comparable<T>> extends AbstractSorting<
 
 			int begin = leftIndex;
 			int end = rightIndex;
-			int i = leftIndex + 1;
+			int index = leftIndex + 1;
 
 			int pivotIndex = leftIndex;
 			T pivotValue = array[pivotIndex];
 
-			while (i <= end) {
+			while (index <= end) {
 
-				if (array[i].compareTo(pivotValue) < 0) {
-					Util.swap(array, i, begin);
+				if (array[index].compareTo(pivotValue) < 0) {
+					Util.swap(array, index, begin);
 					begin++;
-					i++;
-				} else if (pivotValue.compareTo(array[i]) < 0) {
-					Util.swap(array, i, end);
+					index++;
+				} else if (pivotValue.compareTo(array[index]) < 0) {
+					Util.swap(array, index, end);
 					end--;
 				} else {
-					i++;
+					index++;
 				}
-
 			}
 
 			sort(array, leftIndex, begin - 1);
 			sort(array, end + 1, rightIndex);
-
 		}
 
 	}

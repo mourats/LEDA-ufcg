@@ -174,7 +174,7 @@ public class StudentSortingTest {
 			rightIndex--;
 		}
 	}
-
+/*
 	@Test
 	public void testSort11() {
 
@@ -187,5 +187,5 @@ public class StudentSortingTest {
 
 		genericTest(vetor);
 
-	}
+	}*/
 }

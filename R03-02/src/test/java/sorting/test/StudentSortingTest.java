@@ -67,7 +67,7 @@ public class StudentSortingTest {
 		}
 		implementation.sort(array);
 		Arrays.sort(copy1);
-		
+
 		Assert.assertArrayEquals(copy1, array);
 
 	}
@@ -78,12 +78,17 @@ public class StudentSortingTest {
 		if (array.length > 0) {
 			copy1 = Arrays.copyOf(array, array.length);
 		}
+		System.out.println("desordenado: " + Arrays.toString(array));
+
 		implementation.sort(array, leftIndex, rightIndex);
 		Arrays.sort(copy1, leftIndex, rightIndex + 1);
 		/*
 		 * a implementação do Arrays.sort() é exclusiva com rightIndex passado, por isso
 		 * o +1.
 		 */
+
+		System.out.println("ordenado:" + Arrays.toString(copy1));
+		System.out.println("ordenado my: " + Arrays.toString(array));
 
 		Assert.assertArrayEquals(copy1, array);
 	}
@@ -119,8 +124,13 @@ public class StudentSortingTest {
 		int leftIndex = 0;
 		int rightIndex = vetorTamPar.length - 1;
 
+		Integer[] copy1 = {};
+
 		while (leftIndex <= rightIndex) {
-			delimitedTest(vetorTamPar, leftIndex, rightIndex);
+
+			copy1 = Arrays.copyOf(vetorTamPar, vetorTamPar.length);
+
+			delimitedTest(copy1, leftIndex, rightIndex);
 			leftIndex++;
 			rightIndex--;
 		}
@@ -132,8 +142,13 @@ public class StudentSortingTest {
 		int leftIndex = 0;
 		int rightIndex = vetorTamImpar.length - 1;
 
+		Integer[] copy1 = {};
+
 		while (leftIndex <= rightIndex) {
-			delimitedTest(vetorTamImpar, leftIndex, rightIndex);
+
+			copy1 = Arrays.copyOf(vetorTamImpar, vetorTamImpar.length);
+
+			delimitedTest(copy1, leftIndex, rightIndex);
 			leftIndex++;
 			rightIndex--;
 		}
@@ -144,8 +159,13 @@ public class StudentSortingTest {
 		int leftIndex = 0;
 		int rightIndex = vetorVazio.length - 1;
 
+		Integer[] copy1 = {};
+
 		while (leftIndex <= rightIndex) {
-			delimitedTest(vetorVazio, leftIndex, rightIndex);
+
+			copy1 = Arrays.copyOf(vetorVazio, vetorVazio.length);
+
+			delimitedTest(copy1, leftIndex, rightIndex);
 			leftIndex++;
 			rightIndex--;
 		}
@@ -156,8 +176,13 @@ public class StudentSortingTest {
 		int leftIndex = 0;
 		int rightIndex = vetorValoresIguais.length - 1;
 
+		Integer[] copy1 = {};
+
 		while (leftIndex <= rightIndex) {
-			delimitedTest(vetorValoresIguais, leftIndex, rightIndex);
+
+			copy1 = Arrays.copyOf(vetorValoresIguais, vetorValoresIguais.length);
+
+			delimitedTest(copy1, leftIndex, rightIndex);
 			leftIndex++;
 			rightIndex--;
 		}
@@ -168,24 +193,29 @@ public class StudentSortingTest {
 		int leftIndex = 0;
 		int rightIndex = vetorValoresRepetidos.length - 1;
 
+		Integer[] copy1 = {};
+
 		while (leftIndex <= rightIndex) {
-			delimitedTest(vetorValoresRepetidos, leftIndex, rightIndex);
+
+			copy1 = Arrays.copyOf(vetorValoresRepetidos, vetorValoresRepetidos.length);
+
+			delimitedTest(copy1, leftIndex, rightIndex);
 			leftIndex++;
 			rightIndex--;
 		}
 	}
-/*
-	@Test
-	public void testSort11() {
 
-		int quantidade = 30000;
-		Integer[] vetor = new Integer[quantidade];
-
-		for (int i = 0; i < vetor.length; i++) {
-			vetor[i] = (int) (Math.random() * quantidade);
-		}
-
-		genericTest(vetor);
-
-	}*/
+	/*
+	 * 
+	 * @Test public void testSort11() {
+	 * 
+	 * int quantidade = 30000; Integer[] vetor = new Integer[quantidade];
+	 * 
+	 * for (int i = 0; i < vetor.length; i++) { vetor[i] = (int) (Math.random() *
+	 * quantidade); }
+	 * 
+	 * genericTest(vetor);
+	 * 
+	 * }
+	 */
 }

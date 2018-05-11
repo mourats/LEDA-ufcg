@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sorting.AbstractSorting;
-import sorting.linearSorting.CountingSort;
+import sorting.linearSorting.ExtendedCountingSort;
 
 public class StudentSortingTest {
 
@@ -16,6 +16,7 @@ public class StudentSortingTest {
 	private Integer[] vetorVazio = {};
 	private Integer[] vetorValoresRepetidos;
 	private Integer[] vetorValoresIguais;
+	private Integer[] vetorValoresNegativos;
 
 	public AbstractSorting<Integer> implementation;
 
@@ -25,10 +26,10 @@ public class StudentSortingTest {
 		populaVetorTamanhoImpar(new Integer[] { 6, 41, 32, 7, 26, 4, 37, 49, 11, 18, 36 });
 		populaVetorRepetido(new Integer[] { 4, 9, 3, 4, 0, 5, 1, 4 });
 		populaVetorIgual(new Integer[] { 6, 6, 6, 6, 6, 6 });
+		populaValoresNegativos(new Integer[] { 16, 6, 4, 8, 31, -17, 25, 12, -9, 7, -2, 0});
 
 		getImplementation();
 	}
-
 	// // MÉTODOS AUXILIARES DA INICIALIZAÇÃO
 	/**
 	 * Método que inicializa a implementação a ser testada com a implementação do
@@ -36,7 +37,7 @@ public class StudentSortingTest {
 	 */
 	private void getImplementation() {
 
-		this.implementation = new CountingSort();
+		this.implementation = new ExtendedCountingSort();
 
 	}
 
@@ -55,6 +56,12 @@ public class StudentSortingTest {
 	public void populaVetorIgual(Integer[] arrayPadrao) {
 		this.vetorValoresIguais = Arrays.copyOf(arrayPadrao, arrayPadrao.length);
 	}
+	
+	private void populaValoresNegativos(Integer[] arrayPadrao) {
+		this.vetorValoresNegativos = Arrays.copyOf(arrayPadrao, arrayPadrao.length);
+		
+	}
+
 
 	// FIM DOS METODOS AUXILIARES DA INICIALIZAÇÃO
 
@@ -65,6 +72,7 @@ public class StudentSortingTest {
 		if (array.length > 0) {
 			copy1 = Arrays.copyOf(array, array.length);
 		}
+
 		implementation.sort(array);
 		Arrays.sort(copy1);
 
@@ -78,7 +86,6 @@ public class StudentSortingTest {
 		if (array.length > 0) {
 			copy1 = Arrays.copyOf(array, array.length);
 		}
-		System.out.println("desordenado: " + Arrays.toString(array));
 
 		implementation.sort(array, leftIndex, rightIndex);
 		Arrays.sort(copy1, leftIndex, rightIndex + 1);
@@ -86,9 +93,6 @@ public class StudentSortingTest {
 		 * a implementação do Arrays.sort() é exclusiva com rightIndex passado, por isso
 		 * o +1.
 		 */
-
-		System.out.println("ordenado:" + Arrays.toString(copy1));
-		System.out.println("ordenado my: " + Arrays.toString(array));
 
 		Assert.assertArrayEquals(copy1, array);
 	}
@@ -205,17 +209,42 @@ public class StudentSortingTest {
 		}
 	}
 
-	/*
-	 * 
-	 * @Test public void testSort11() {
-	 * 
-	 * int quantidade = 30000; Integer[] vetor = new Integer[quantidade];
-	 * 
-	 * for (int i = 0; i < vetor.length; i++) { vetor[i] = (int) (Math.random() *
-	 * quantidade); }
-	 * 
-	 * genericTest(vetor);
-	 * 
-	 * }
-	 */
+	@Test
+	public void testSort11() {
+
+		int quantidade = 30000;
+		Integer[] vetor = new Integer[quantidade];
+
+		for (int i = 0; i < vetor.length; i++) {
+			vetor[i] = (int) (Math.random() * quantidade*100);
+		}
+
+		genericTest(vetor);
+
+	}
+	
+	@Test
+	public void testSort012() {
+		genericTest(vetorValoresNegativos);
+	}
+	
+	@Test
+	public void testSort13() {
+		int leftIndex = 0;
+		int rightIndex = vetorValoresNegativos.length - 1;
+
+		Integer[] copy1 = {};
+
+		while (leftIndex <= rightIndex) {
+
+			copy1 = Arrays.copyOf(vetorValoresNegativos, vetorValoresNegativos.length);
+
+			delimitedTest(copy1, leftIndex, rightIndex);
+			leftIndex++;
+			rightIndex--;
+		}
+	}
+	
+	
+
 }

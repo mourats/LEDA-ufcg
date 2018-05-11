@@ -22,30 +22,30 @@ public class CountingSort extends AbstractSorting<Integer> {
 				if (array[i] > maior)
 					maior = array[i];
 			}
-			
 			maior++;
 
-	        int[] arrayAuxiliar = new int[maior];
+			int[] arrayAuxiliar = new int[maior];
 
-	        for (int i = leftIndex; i <= rightIndex; i++) {
-	            arrayAuxiliar[array[i]] += 1;
-	        }
+			for (int i = leftIndex; i <= rightIndex; i++) {
+				arrayAuxiliar[array[i]] += 1;
+			}
 
-	        for (int i = 1; i < arrayAuxiliar.length; i++) {
-	            arrayAuxiliar[i] += arrayAuxiliar[i-1];
-	        }
+			arrayAuxiliar[0] += leftIndex;
+			for (int i = 1; i < arrayAuxiliar.length; i++) {
+				arrayAuxiliar[i] += arrayAuxiliar[i - 1];
+			}
 
-	        int[] arrayOrdenado = new int[array.length];
+			int[] arrayOrdenado = new int[array.length];
 
-	        for (int i = rightIndex; i >= leftIndex; i--) {
-	        	
-	            arrayOrdenado[arrayAuxiliar[array[i]]-1] = array[i];
-	        	arrayAuxiliar[array[i]] -= 1;
-	        }
+			for (int i = rightIndex; i >= leftIndex; i--) {
 
-	        for (int i = leftIndex; i <= rightIndex; i++){
-	            array[i] = arrayOrdenado[i];
-	        }
+				arrayOrdenado[arrayAuxiliar[array[i]] - 1] = array[i];
+				arrayAuxiliar[array[i]] -= 1;
+			}
+
+			for (int i = leftIndex; i <= rightIndex; i++) {
+				array[i] = arrayOrdenado[i];
+			}
 		}
 
 	}

@@ -7,3 +7,43 @@
   <level>FINE</level>
   <message>File 116210967-THIAGO SANTOS DE MOURA.zip was received. It was sent by THIAGO SANTOS DE MOURA from IP 150.165.42.117</message>
 </record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2018-05-12T23:20:28.919-0300</date>
+  <logger>THIAGO SANTOS DE MOURA</logger>
+  <level>FINE</level>
+  <message>File 116210967-THIAGO SANTOS DE MOURA.zip was received. It was sent by THIAGO SANTOS DE MOURA from IP 192.168.25.75</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2018-05-13T00:04:10.759-0300</date>
+  <logger>THIAGO SANTOS DE MOURA</logger>
+  <level>FINE</level>
+  <message>File 116210967-THIAGO SANTOS DE MOURA.zip was received. It was sent by THIAGO SANTOS DE MOURA from IP 192.168.25.75</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2018-05-13T00:29:35.895-0300</date>
+  <logger>THIAGO SANTOS DE MOURA</logger>
+  <level>FINE</level>
+  <message>File 116210967-THIAGO SANTOS DE MOURA.zip was received. It was sent by THIAGO SANTOS DE MOURA from IP 192.168.25.75</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2018-05-13T00:43:23.113-0300</date>
+  <logger>THIAGO SANTOS DE MOURA</logger>
+  <level>FINE</level>
+  <message>File 116210967-THIAGO SANTOS DE MOURA.zip was received. It was sent by THIAGO SANTOS DE MOURA from IP 192.168.25.75</message>
+</record>

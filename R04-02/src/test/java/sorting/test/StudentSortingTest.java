@@ -26,10 +26,11 @@ public class StudentSortingTest {
 		populaVetorTamanhoImpar(new Integer[] { 6, 41, 32, 7, 26, 4, 37, 49, 11, 18, 36 });
 		populaVetorRepetido(new Integer[] { 4, 9, 3, 4, 0, 5, 1, 4 });
 		populaVetorIgual(new Integer[] { 6, 6, 6, 6, 6, 6 });
-		populaValoresNegativos(new Integer[] { 16, 6, 4, 8, 31, -17, 25, 12, -9, 7, -2, 0});
+		populaValoresNegativos(new Integer[] { 16, 6, 4, 8, 31, -17, 25, 12, -9, 7, -2, 0 });
 
 		getImplementation();
 	}
+
 	// // MÉTODOS AUXILIARES DA INICIALIZAÇÃO
 	/**
 	 * Método que inicializa a implementação a ser testada com a implementação do
@@ -56,12 +57,11 @@ public class StudentSortingTest {
 	public void populaVetorIgual(Integer[] arrayPadrao) {
 		this.vetorValoresIguais = Arrays.copyOf(arrayPadrao, arrayPadrao.length);
 	}
-	
+
 	private void populaValoresNegativos(Integer[] arrayPadrao) {
 		this.vetorValoresNegativos = Arrays.copyOf(arrayPadrao, arrayPadrao.length);
-		
-	}
 
+	}
 
 	// FIM DOS METODOS AUXILIARES DA INICIALIZAÇÃO
 
@@ -216,18 +216,18 @@ public class StudentSortingTest {
 		Integer[] vetor = new Integer[quantidade];
 
 		for (int i = 0; i < vetor.length; i++) {
-			vetor[i] = (int) (Math.random() * quantidade*100);
+			vetor[i] = (int) (Math.random() * quantidade);
 		}
 
 		genericTest(vetor);
 
 	}
-	
+
 	@Test
-	public void testSort012() {
+	public void testSort12() {
 		genericTest(vetorValoresNegativos);
 	}
-	
+
 	@Test
 	public void testSort13() {
 		int leftIndex = 0;
@@ -244,7 +244,5 @@ public class StudentSortingTest {
 			rightIndex--;
 		}
 	}
-	
-	
 
 }

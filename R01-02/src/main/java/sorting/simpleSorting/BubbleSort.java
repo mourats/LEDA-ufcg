@@ -16,19 +16,20 @@ public class BubbleSort<T extends Comparable<T>> extends AbstractSorting<T> {
 		boolean valid = inputValidation(array, leftIndex, rightIndex);
 
 		if (valid) {
-
-			for (int i = leftIndex; i < rightIndex - 1; i++) {
-
-				for (int j = leftIndex; j < rightIndex - i; j++) {
-
-					if (array[j].compareTo(array[j + 1]) > 0) {
-						Util.swap(array, j, j + 1);
+			
+			int i = leftIndex;
+			boolean trocas = true;
+			
+			while(i <= rightIndex && trocas) {
+				trocas = false;
+				for (int j = leftIndex; j < rightIndex; j++) {
+					if (array[j].compareTo(array[j+1]) > 0) {
+						Util.swap(array, j, j+1);
+						trocas = true;
 					}
 				}
-
 			}
 		}
-
 	}
 
 	private boolean inputValidation(T[] array, int leftIndex, int rightIndex) {

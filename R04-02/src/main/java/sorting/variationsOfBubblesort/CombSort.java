@@ -26,7 +26,6 @@ public class CombSort<T extends Comparable<T>> extends AbstractSorting<T> {
 			while (gap > 1 || swapped) {
 
 				gap = getNextGap(gap);
-
 				swapped = false;
 
 				int i = leftIndex;

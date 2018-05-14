@@ -25,6 +25,7 @@ public class RecursiveBubbleSort<T extends Comparable<T>> extends AbstractSortin
 			}
 			sort(array, leftIndex + 1, rightIndex);
 		}
+
 	}
 
 	private boolean inputValidation(T[] array, int leftIndex, int rightIndex) {

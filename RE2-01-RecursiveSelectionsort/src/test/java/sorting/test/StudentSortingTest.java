@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sorting.AbstractSorting;
-import sorting.simpleSorting.SelectionSort;
+import sorting.variationsOfSelectionsort.RecursiveSelectionSort;
 
 public class StudentSortingTest {
 
@@ -38,7 +38,7 @@ public class StudentSortingTest {
 	 */
 	private void getImplementation() {
 
-		this.implementation = new SelectionSort<Integer>();
+		this.implementation = new RecursiveSelectionSort<Integer>();
 
 	}
 
@@ -64,7 +64,6 @@ public class StudentSortingTest {
 	}
 
 	// FIM DOS METODOS AUXILIARES DA INICIALIZAÇÃO
-
 	// MÉTODOS DE TESTE
 
 	public void genericTest(Integer[] array) {
@@ -93,7 +92,7 @@ public class StudentSortingTest {
 		 * a implementação do Arrays.sort() é exclusiva com rightIndex passado, por isso
 		 * o +1.
 		 */
-		
+
 		Assert.assertArrayEquals(copy1, array);
 	}
 
@@ -208,11 +207,11 @@ public class StudentSortingTest {
 			rightIndex--;
 		}
 	}
-
+	
 	@Test
 	public void testSort11() {
 
-		int quantidade = 30000;
+		int quantidade = 5000;
 		Integer[] vetor = new Integer[quantidade];
 
 		for (int i = 0; i < vetor.length; i++) {

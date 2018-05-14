@@ -17,10 +17,9 @@ public class BubbleSort<T extends Comparable<T>> extends AbstractSorting<T> {
 
 		if (valid) {
 			
-			int i = leftIndex;
 			boolean trocas = true;
 			
-			while(i <= rightIndex && trocas) {
+			while(trocas) {
 				trocas = false;
 				for (int j = leftIndex; j < rightIndex; j++) {
 					if (array[j].compareTo(array[j+1]) > 0) {

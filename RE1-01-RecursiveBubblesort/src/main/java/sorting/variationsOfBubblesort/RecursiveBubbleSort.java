@@ -18,12 +18,14 @@ public class RecursiveBubbleSort<T extends Comparable<T>> extends AbstractSortin
 		boolean valid = inputValidation(array, leftIndex, rightIndex);
 
 		if (valid) {
-			for (int k = leftIndex; k < rightIndex; k++) {
-				if (array[k].compareTo(array[k + 1]) > 0) {
-					Util.swap(array, k, k + 1);
+			
+			for (int i = leftIndex; i < rightIndex; i++) {
+				if (array[i].compareTo(array[i + 1]) > 0) {
+					Util.swap(array, i, i + 1);
 				}
 			}
-			sort(array, leftIndex + 1, rightIndex);
+			
+			sort(array, leftIndex, rightIndex - 1);
 		}
 
 	}

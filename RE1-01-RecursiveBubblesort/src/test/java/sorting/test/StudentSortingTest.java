@@ -71,14 +71,9 @@ public class StudentSortingTest {
 		if (array.length > 0) {
 			copy1 = Arrays.copyOf(array, array.length);
 		}
-		System.out.println(Arrays.toString(array));
+		
 		implementation.sort(array);
 		Arrays.sort(copy1);
-
-		
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(copy1));
-		System.out.println("");
 
 		Assert.assertArrayEquals(copy1, array);
 
@@ -212,11 +207,11 @@ public class StudentSortingTest {
 			rightIndex--;
 		}
 	}
-	/*
+	
 	@Test
 	public void testSort11() {
 
-		int quantidade = 30000;
+		int quantidade = 6000;
 		Integer[] vetor = new Integer[quantidade];
 
 		for (int i = 0; i < vetor.length; i++) {
@@ -225,7 +220,7 @@ public class StudentSortingTest {
 
 		genericTest(vetor);
 
-	}*/
+	}
 
 	@Test
 	public void testSort12() {

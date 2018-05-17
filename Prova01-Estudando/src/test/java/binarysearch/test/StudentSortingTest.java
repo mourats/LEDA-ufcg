@@ -1,29 +1,29 @@
 package binarysearch.test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import binarysearch.BinarySearch;
-import binarysearch.BinarySearchRecursive;
+import binarysearch.FloorCeil;
 
 public class StudentSortingTest {
 
 	private Integer[] vetorTamPar;
+	@SuppressWarnings("unused")
 	private Integer[] vetorTamImpar;
+	@SuppressWarnings("unused")
 	private Integer[] vetorVazio = {};
+	@SuppressWarnings("unused")
 	private Integer[] vetorValoresIguais;
+	@SuppressWarnings("unused")
 	private Integer[] vetorValoresNegativos;
 
-	public BinarySearch implementation;
+	public FloorCeil implementation;
 
 	@Before
 	public void setUp() {
-		populaVetorTamanhoPar(new Integer[] { 4, 7, 11, 11, 22, 22, 26, 28, 29, 30 });
+		populaVetorTamanhoPar(new Integer[] { 4, 6, 8, 10 });
 		populaVetorTamanhoImpar(new Integer[] { 4, 6, 7, 11, 18, 26, 32, 36, 37, 41, 49 });
 		populaValoresNegativos(new Integer[] { -17, -9, -2, 0, 4, 6, 7, 8, 12, 16, 25, 31 });
 		populaVetorIgual(new Integer[] { 6, 6, 6, 6, 6, 6 });
@@ -33,7 +33,7 @@ public class StudentSortingTest {
 
 	private void getImplementation() {
 
-		this.implementation = new BinarySearchRecursive();
+		this.implementation = new FloorCeil();
 
 	}
 
@@ -56,18 +56,17 @@ public class StudentSortingTest {
 
 	public void genericTest(Integer[] array, int x) {
 		
-		if(array.length > 0)
-			assertTrue(implementation.buscaBinaria(array, x));
 
-		assertFalse(implementation.buscaBinaria(array, x + 100));
+		System.out.println(implementation.floor(array, x));
+		System.out.println(implementation.ceil(array, x));
 
 	}
 
 	@Test
 	public void testSort01() {
-		genericTest(vetorTamPar, 26);
+		genericTest(vetorTamPar, 7);
 	}
-
+/*
 	@Test
 	public void testSort02() {
 		genericTest(vetorTamImpar, 32);
@@ -87,5 +86,5 @@ public class StudentSortingTest {
 	public void testSort05() {
 		genericTest(vetorValoresNegativos, -17);
 	}
-
+*/
 }

@@ -1,6 +1,6 @@
 package binarysearch;
 
-public class BinarySearchInteractive {
+public class BinarySearchInteractive implements BinarySearch {
 
 	public boolean buscaBinaria(Integer[] array, int x) {
 
@@ -10,7 +10,7 @@ public class BinarySearchInteractive {
 
 			int middle;
 			int begin = 0;
-			int end = array.length;
+			int end = array.length - 1;
 
 			while (begin <= end) {
 				middle = (begin + end) / 2;
@@ -19,9 +19,9 @@ public class BinarySearchInteractive {
 					return true;
 
 				if (x < array[middle])
-					end = middle;
+					end = middle - 1;
 				else
-					begin = middle;
+					begin = middle + 1;
 
 			}
 		}

@@ -46,6 +46,7 @@
 								qualified name = nome com o pacote) -->
 							<qualifiedNames>
 								<name>sorting.variationsOfBubblesort.RecursiveBubbleSort</name>
+								<name>sorting.simpleSorting.BubbleSort</name>
 							</qualifiedNames>
 						</configuration>
 					</execution>

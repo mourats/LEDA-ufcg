@@ -53,10 +53,6 @@ public class StudentSortingTest {
 		implementation.sort(array);
 		Arrays.sort(copy1);
 		
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(copy1));
-		System.out.println("");
-		
 		Assert.assertArrayEquals(copy1, array);
 
 	}

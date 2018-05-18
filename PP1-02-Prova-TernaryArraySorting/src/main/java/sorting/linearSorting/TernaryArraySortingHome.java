@@ -24,15 +24,17 @@ public class TernaryArraySortingHome<T extends Comparable<T>> implements Ternary
 				if (ternaryArray[i].compareTo(ternaryArray[maximo]) > 0) {
 					if (cont == 1)
 						medio = maximo;
-
-					maximo = i;
+					else
+						maximo = i;
+					
 					cont++;
 
 				} else if (ternaryArray[i].compareTo(ternaryArray[minimo]) < 0) {
 					if (cont == 1)
 						medio = minimo;
-
-					minimo = i;
+					else
+						minimo = i;
+					
 					cont++;
 				}
 				i++;

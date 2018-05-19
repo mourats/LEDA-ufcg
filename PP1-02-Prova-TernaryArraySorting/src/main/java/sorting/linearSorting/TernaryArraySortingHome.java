@@ -41,45 +41,26 @@ public class TernaryArraySortingHome<T extends Comparable<T>> implements Ternary
 			}
 
 			Util.swap(ternaryArray, medio, leftIndex);
+			
+			int index = leftIndex + 1;
 
-			T objMedio = ternaryArray[leftIndex];
+			int pivotIndex = leftIndex;
+			T pivotValue = ternaryArray[pivotIndex];
 
-			int index = partition(ternaryArray, leftIndex, rightIndex);
+			while (index <= rightIndex) {
 
-			i = 0;
-			boolean guard = true;
-			while (guard) {
-				if (objMedio.compareTo(ternaryArray[i]) > 0) {
-					Util.swap(ternaryArray, i, leftIndex);
-					guard = false;
+				if (ternaryArray[index].compareTo(pivotValue) < 0) {
+					Util.swap(ternaryArray, index, leftIndex);
+					leftIndex++;
+					index++;
+				} else if (pivotValue.compareTo(ternaryArray[index]) < 0) {
+					Util.swap(ternaryArray, index, rightIndex);
+					rightIndex--;
+				} else {
+					index++;
 				}
-				i++;
-			}
-
-			partition(ternaryArray, leftIndex, index - 1);
-		}
-	}
-
-	private int partition(T[] ternaryArray, int leftIndex, int rightIndex) {
-
-		int inicio = leftIndex + 1;
-		int fim = rightIndex;
-
-		while (inicio <= fim) {
-
-			if (ternaryArray[inicio].compareTo(ternaryArray[leftIndex]) <= 0)
-				inicio++;
-			else if (ternaryArray[fim].compareTo(ternaryArray[leftIndex]) > 0)
-				fim--;
-			else {
-				Util.swap(ternaryArray, inicio, fim);
-				inicio++;
-				fim--;
 			}
 		}
-
-		Util.swap(ternaryArray, leftIndex, fim);
-		return fim;
 	}
 
 	private boolean inputValidation(T[] array, int leftIndex, int rightIndex) {
@@ -88,13 +69,7 @@ public class TernaryArraySortingHome<T extends Comparable<T>> implements Ternary
 			return false;
 		if (array.length == 0)
 			return false;
-		if (leftIndex < 0 || rightIndex < 0)
-			return false;
-		if (leftIndex >= rightIndex)
-			return false;
-		if (rightIndex >= array.length)
-			return false;
-
+		
 		return true;
 	}
 }

@@ -20,9 +20,9 @@ public class StudentSortingTest {
 
 	@Before
 	public void setUp() {
-		populaVetorTamanhoPar(new Integer[] { 30, 12, 1, 1, 12, 30, 1, 12, 12, 1 });
+		populaVetorTamanhoPar(new Integer[] { 12, 30, 12, 1, 1, 12, 30, 1, 12, 12, 1, 30 });
 		populaVetorTamanhoImpar(new Integer[] { 60, 40, 40, 10, 60, 10, 10, 60, 40, 40, 40 });
-		populaVetorUnico(new Integer[] { 1,2,3 });
+		populaVetorUnico(new Integer[] { 1, 2, 3 });
 
 		getImplementation();
 	}
@@ -52,7 +52,7 @@ public class StudentSortingTest {
 		}
 		implementation.sort(array);
 		Arrays.sort(copy1);
-		
+
 		Assert.assertArrayEquals(copy1, array);
 
 	}

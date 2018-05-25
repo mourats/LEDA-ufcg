@@ -42,7 +42,8 @@ public class StackImpl<T> implements Stack<T> {
 		if (this.isEmpty())
 			throw new StackUnderflowException();
 
-		return array[top--];
+		this.top -= 1;
+		return array[top + 1];
 	}
 
 }

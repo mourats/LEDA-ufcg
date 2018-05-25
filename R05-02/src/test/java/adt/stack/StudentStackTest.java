@@ -18,19 +18,17 @@ public class StudentStackTest {
 
 		getImplementations();
 
-		// Pilha com 3 elementos não cheia.
 		stack1.push(1);
 		stack1.push(2);
 		stack1.push(3);
 
-		// Pilha com 2 elementos de tamanho 2, pilha cheia.
 		stack2.push(1);
 		stack2.push(2);
 
 	}
 
 	private void getImplementations() {
-		// TODO O aluno deve ajustar aqui para instanciar sua implementação
+
 		stack1 = new StackImpl<Integer>(5);
 		stack2 = new StackImpl<Integer>(5);
 		stack3 = new StackImpl<Integer>(5);
@@ -80,6 +78,8 @@ public class StudentStackTest {
 	public void testPushComErro() throws StackOverflowException {
 		stack1.push(new Integer(5));
 		stack1.push(new Integer(5));
+		
+		// Erro aqui!
 		stack1.push(new Integer(5));
 	}
 
@@ -99,6 +99,8 @@ public class StudentStackTest {
 		assertEquals(new Integer(3), stack1.pop());
 		assertEquals(new Integer(2), stack1.pop());
 		assertEquals(new Integer(1), stack1.pop());
+		
+		// Erro aqui!
 		assertEquals("irineu", stack1.pop());
 	}
 }

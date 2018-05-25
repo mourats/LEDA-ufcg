@@ -2,6 +2,8 @@ package adt.queue;
 
 import adt.stack.Stack;
 import adt.stack.StackImpl;
+import adt.stack.StackOverflowException;
+import adt.stack.StackUnderflowException;
 
 public class QueueUsingStack<T> implements Queue<T> {
 
@@ -15,32 +17,80 @@ public class QueueUsingStack<T> implements Queue<T> {
 
 	@Override
 	public void enqueue(T element) throws QueueOverflowException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+
+		if (this.isFull())
+			throw new QueueOverflowException();
+
+		try {
+			this.stack1.push(element);
+		} catch (StackOverflowException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public T dequeue() throws QueueUnderflowException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+
+		if (this.isEmpty())
+			throw new QueueUnderflowException();
+
+		T element = null;
+
+		try {
+			this.invertStacks();
+			element = stack2.pop();
+			this.invertStacks();
+
+		} catch (StackUnderflowException | StackOverflowException e) {
+			e.printStackTrace();
+		}
+
+		return element;
 	}
 
 	@Override
 	public T head() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+
+		T element = null;
+
+		try {
+			this.invertStacks();
+			element = stack2.top();
+			this.invertStacks();
+
+		} catch (StackOverflowException | StackUnderflowException e) {
+			e.printStackTrace();
+		}
+
+		return element;
+
+	}
+
+	private void invertStacks() throws StackOverflowException, StackUnderflowException {
+
+		if (this.stack2.isEmpty()) {
+			while (!this.stack1.isEmpty()) {
+
+				this.stack2.push(stack1.pop());
+			}
+		} else {
+
+			while (!this.stack2.isEmpty()) {
+
+				this.stack1.push(stack2.pop());
+
+			}
+		}
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return this.stack1.isEmpty();
 	}
 
 	@Override
 	public boolean isFull() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return this.stack1.isFull();
 	}
 
 }

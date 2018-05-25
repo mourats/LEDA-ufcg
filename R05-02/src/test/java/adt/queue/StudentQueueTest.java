@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,28 +18,27 @@ public class StudentQueueTest {
 
 		getImplementations();
 
-		// Fila com 3 elementos não cheia.
 		queue1.enqueue(1);
 		queue1.enqueue(2);
 		queue1.enqueue(3);
 
-		// Fila com 2 elementos de tamanho 2. Fila cheia.
 		queue2.enqueue(1);
 		queue2.enqueue(2);
 
 	}
 
 	private void getImplementations() {
-		// TODO O aluno deve ajustar aqui para instanciar sua implementação
-		queue1 = null;
-		queue2 = null;
-		queue3 = null;
+
+		queue1 = new QueueUsingStack<Integer>(5);
+		queue2 = new QueueUsingStack<Integer>(5);
+		queue3 = new QueueUsingStack<Integer>(5);
 	}
 
 	// MÉTODOS DE TESTE
 	@Test
 	public void testHead() {
 		assertEquals(new Integer(1), queue1.head());
+		assertEquals(new Integer(1), queue2.head());
 	}
 
 	@Test
@@ -50,40 +48,58 @@ public class StudentQueueTest {
 	}
 
 	@Test
-	public void testIsFull() {
+	public void testIsFull() throws QueueOverflowException {
 		assertFalse(queue1.isFull());
+		assertFalse(queue2.isFull());
+		assertFalse(queue3.isFull());
+
+		queue1.enqueue(6);
+		queue1.enqueue(7);
+		assertTrue(queue1.isFull());
 	}
 
 	@Test
-	public void testEnqueue() {
-		try {
-			queue1.enqueue(new Integer(5));
-		} catch (QueueOverflowException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void testEnqueue() throws QueueOverflowException {
+
+		assertEquals(new Integer(1), queue2.head());
+
+		queue3.enqueue(new Integer(15));
+		assertEquals(new Integer(15), queue3.head());
+		queue3.enqueue(new Integer(42));
+		assertEquals(new Integer(15), queue3.head());
+
 	}
 
 	@Test(expected = QueueOverflowException.class)
 	public void testEnqueueComErro() throws QueueOverflowException {
-		queue1.enqueue(new Integer(5)); // vai depender do tamanho que a fila
-										// foi iniciada!!!
+		queue1.enqueue(new Integer(5));
+		queue1.enqueue(new Integer(4));
+
+		// Erro aqui!
+		queue1.enqueue(new Integer(12));
+
 	}
 
 	@Test
-	public void testDequeue() {
-		try {
-			assertEquals(new Integer(1), queue1.dequeue());
-		} catch (QueueUnderflowException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void testDequeue() throws QueueUnderflowException, QueueOverflowException {
+
+		assertEquals(new Integer(1), queue1.dequeue());
+		assertEquals(new Integer(1), queue2.dequeue());
+		
+		queue3.enqueue(7);
+		
+		assertEquals(new Integer(7), queue3.dequeue());
+		
+
 	}
 
 	@Test(expected = QueueUnderflowException.class)
 	public void testDequeueComErro() throws QueueUnderflowException {
-		assertEquals(new Integer(1), queue1.dequeue()); // vai depender do
-														// tamanho que a fial
-														// foi iniciada!!!
+		assertEquals(new Integer(1), queue1.dequeue());
+		assertEquals(new Integer(2), queue1.dequeue());
+		assertEquals(new Integer(3), queue1.dequeue());
+		
+		//Erro aqui!
+		assertEquals("irineu", queue1.dequeue());
 	}
 }

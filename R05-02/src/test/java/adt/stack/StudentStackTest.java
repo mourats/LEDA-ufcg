@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,57 +31,74 @@ public class StudentStackTest {
 
 	private void getImplementations() {
 		// TODO O aluno deve ajustar aqui para instanciar sua implementação
-		stack1 = null;
-		stack2 = null;
-		stack3 = null;
+		stack1 = new StackImpl<Integer>(5);
+		stack2 = new StackImpl<Integer>(5);
+		stack3 = new StackImpl<Integer>(5);
 	}
 
 	// MÉTODOS DE TESTE
 	@Test
 	public void testTop() {
 		assertEquals(new Integer(3), stack1.top());
+		assertEquals(new Integer(2), stack2.top());
 	}
 
 	@Test
-	public void testIsEmpty() {
+	public void testIsEmpty() throws StackUnderflowException {
 		assertFalse(stack1.isEmpty());
+		assertTrue(stack3.isEmpty());
+
+		stack2.pop();
+		stack2.pop();
+		assertTrue(stack2.isEmpty());
+
 	}
 
 	@Test
-	public void testIsFull() {
-		assertFalse(stack1.isFull()); // vai depender do tamanho que a pilha foi
-										// iniciada!!!!
+	public void testIsFull() throws StackOverflowException {
+		assertFalse(stack1.isFull());
+		stack1.push(4);
+		stack1.push(5);
+		assertTrue(stack1.isFull());
 	}
 
 	@Test
-	public void testPush() {
-		try {
-			stack1.push(new Integer(5));
-		} catch (StackOverflowException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void testPush() throws StackOverflowException {
+
+		stack1.push(new Integer(5));
+		assertEquals(new Integer(5), stack1.top());
+
+		stack2.push(new Integer(10));
+		assertEquals(new Integer(10), stack2.top());
+
+		stack3.push(new Integer(15));
+		assertEquals(new Integer(15), stack3.top());
+
 	}
 
 	@Test(expected = StackOverflowException.class)
 	public void testPushComErro() throws StackOverflowException {
-		stack1.push(new Integer(5)); // levanta excecao apenas se o tamanhonao
-										// permitir outra insercao
+		stack1.push(new Integer(5));
+		stack1.push(new Integer(5));
+		stack1.push(new Integer(5));
 	}
 
 	@Test
-	public void testPop() {
-		try {
-			assertEquals(new Integer(3), stack1.pop());
-		} catch (StackUnderflowException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void testPop() throws StackUnderflowException {
+
+		assertEquals(new Integer(3), stack1.pop());
+		assertEquals(new Integer(2), stack1.pop());
+
+		assertEquals(new Integer(2), stack2.pop());
+
 	}
 
 	@Test(expected = StackUnderflowException.class)
 	public void testPopComErro() throws StackUnderflowException {
-		assertEquals(new Integer(3), stack1.pop()); // levanta excecao apenas se
-													// stack1 for vazia
+
+		assertEquals(new Integer(3), stack1.pop());
+		assertEquals(new Integer(2), stack1.pop());
+		assertEquals(new Integer(1), stack1.pop());
+		assertEquals("irineu", stack1.pop());
 	}
 }

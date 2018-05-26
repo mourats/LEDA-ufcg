@@ -78,7 +78,6 @@ public class QueueUsingStack<T> implements Queue<T> {
 			while (!this.stack2.isEmpty()) {
 
 				this.stack1.push(stack2.pop());
-
 			}
 		}
 	}

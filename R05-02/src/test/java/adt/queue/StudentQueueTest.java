@@ -12,6 +12,7 @@ public class StudentQueueTest {
 	public Queue<Integer> queue1;
 	public Queue<Integer> queue2;
 	public Queue<Integer> queue3;
+	public Queue<Integer> queue4;
 
 	@Before
 	public void setUp() throws QueueOverflowException {
@@ -32,6 +33,7 @@ public class StudentQueueTest {
 		queue1 = new QueueUsingStack<Integer>(5);
 		queue2 = new QueueUsingStack<Integer>(5);
 		queue3 = new QueueUsingStack<Integer>(5);
+		queue4 = new QueueUsingStack<Integer>(1);
 	}
 
 	// MÉTODOS DE TESTE
@@ -39,6 +41,7 @@ public class StudentQueueTest {
 	public void testHead() {
 		assertEquals(new Integer(1), queue1.head());
 		assertEquals(new Integer(1), queue2.head());
+		assertEquals(null, queue4.head());
 	}
 
 	@Test
@@ -52,10 +55,14 @@ public class StudentQueueTest {
 		assertFalse(queue1.isFull());
 		assertFalse(queue2.isFull());
 		assertFalse(queue3.isFull());
+		assertFalse(queue4.isFull());
 
 		queue1.enqueue(6);
 		queue1.enqueue(7);
 		assertTrue(queue1.isFull());
+		
+		queue4.enqueue(4);
+		assertTrue(queue4.isFull());
 	}
 
 	@Test
@@ -75,7 +82,7 @@ public class StudentQueueTest {
 		queue1.enqueue(new Integer(5));
 		queue1.enqueue(new Integer(4));
 
-		// Erro aqui!
+		// Exception aqui!
 		queue1.enqueue(new Integer(12));
 
 	}
@@ -99,7 +106,7 @@ public class StudentQueueTest {
 		assertEquals(new Integer(2), queue1.dequeue());
 		assertEquals(new Integer(3), queue1.dequeue());
 		
-		//Erro aqui!
+		//Exception aqui!
 		assertEquals("irineu", queue1.dequeue());
 	}
 }

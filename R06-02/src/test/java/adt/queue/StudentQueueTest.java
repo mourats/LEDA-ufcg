@@ -25,7 +25,6 @@ public class StudentQueueTest {
 
 		queue2.enqueue(1);
 		queue2.enqueue(2);
-
 	}
 
 	private void getImplementations() {

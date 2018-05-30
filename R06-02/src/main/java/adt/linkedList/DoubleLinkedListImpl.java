@@ -5,13 +5,15 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements 
 	protected DoubleLinkedListNode<T> last;
 
 	public DoubleLinkedListImpl() {
-        last = new DoubleLinkedListNode<T>();
-        head = new DoubleLinkedListNode<T>();
-    }
+
+		head = new DoubleLinkedListNode<T>();
+		last = (DoubleLinkedListNode<T>) head;
+	}
 
 	@Override
 	public void insertFirst(T element) {
-		DoubleLinkedListNode<T> newHeadNode = new DoubleLinkedListNode<T>(element, new DoubleLinkedListNode<T>(), new DoubleLinkedListNode<T>());
+		DoubleLinkedListNode<T> newHeadNode = new DoubleLinkedListNode<T>(element, new DoubleLinkedListNode<T>(),
+				new DoubleLinkedListNode<T>());
 		newHeadNode.next = head;
 		((DoubleLinkedListNode<T>) head).previous = newHeadNode;
 
@@ -36,6 +38,7 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements 
 		}
 
 	}
+
 	@Override
 	public void insert(T element) {
 		if (element != null) {
@@ -44,13 +47,15 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements 
 				this.head.setData(element);
 				this.head.setNext(new DoubleLinkedListNode<T>());
 				this.last.setNext(new DoubleLinkedListNode<T>());
+				this.last.setPrevious(new DoubleLinkedListNode<T>());
+				((DoubleLinkedListNode<T>) this.head).setPrevious(new DoubleLinkedListNode<T>());
 			} else {
 				DoubleLinkedListNode<T> aux = (DoubleLinkedListNode<T>) this.head;
 
 				while (!aux.getNext().isNIL()) {
 					aux = (DoubleLinkedListNode<T>) aux.getNext();
 				}
-				
+
 				((DoubleLinkedListNode<T>) aux.getNext()).setPrevious(aux);
 				this.last = (DoubleLinkedListNode<T>) aux.getNext();
 				aux.getNext().setData(element);

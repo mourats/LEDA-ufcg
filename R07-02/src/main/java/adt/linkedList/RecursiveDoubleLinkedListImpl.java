@@ -20,20 +20,12 @@ public class RecursiveDoubleLinkedListImpl<T> extends RecursiveSingleLinkedListI
 			if (isEmpty()) {
 				this.insert(element);
 			} else {
-				((RecursiveDoubleLinkedListImpl<T>) getNext()).swiftValueNode(getData());
+				RecursiveDoubleLinkedListImpl<T> newNode = new RecursiveDoubleLinkedListImpl<T>(getData(), getNext(),
+						this);
+				((RecursiveDoubleLinkedListImpl<T>) getNext()).setPrevious(newNode);
+				setNext(newNode);
 				setData(element);
 			}
-		}
-	}
-
-	private void swiftValueNode(T element) {
-		if (!isEmpty()) {
-			T value = getData();
-			setData(element);
-			((RecursiveDoubleLinkedListImpl<T>) getNext()).swiftValueNode(value);
-		} else {
-			setData(element);
-			setNext(new RecursiveDoubleLinkedListImpl<T>(null, null, this));
 		}
 	}
 

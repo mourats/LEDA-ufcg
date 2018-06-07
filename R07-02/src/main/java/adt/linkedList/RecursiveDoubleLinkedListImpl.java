@@ -18,13 +18,22 @@ public class RecursiveDoubleLinkedListImpl<T> extends RecursiveSingleLinkedListI
 	public void insertFirst(T element) {
 		if (element != null) {
 			if (isEmpty()) {
-				setData(element);
-				setPrevious(new RecursiveDoubleLinkedListImpl<T>(null, this, null));
-				if (getNext() == null)
-					setNext(new RecursiveDoubleLinkedListImpl<T>(null, null, this));
+				this.insert(element);
 			} else {
-				getPrevious().insertFirst(element);
+				((RecursiveDoubleLinkedListImpl<T>) getNext()).swiftValueNode(getData());
+				setData(element);
 			}
+		}
+	}
+
+	private void swiftValueNode(T element) {
+		if (!isEmpty()) {
+			T value = getData();
+			setData(element);
+			((RecursiveDoubleLinkedListImpl<T>) getNext()).swiftValueNode(value);
+		} else {
+			setData(element);
+			setNext(new RecursiveDoubleLinkedListImpl<T>(null, null, this));
 		}
 	}
 
@@ -93,44 +102,6 @@ public class RecursiveDoubleLinkedListImpl<T> extends RecursiveSingleLinkedListI
 					next.remove(element);
 			}
 		}
-	}
-
-	@Override
-	public int size() {
-		if (isEmpty())
-			return 0;
-		else
-			return right() + left() - 1;
-	}
-
-	private int right() {
-		if (isEmpty())
-			return 0;
-		else
-			return 1 + ((RecursiveDoubleLinkedListImpl<T>) getNext()).right();
-	}
-
-	private int left() {
-		if (isEmpty())
-			return 0;
-		else
-			return 1 + getPrevious().left();
-	}
-
-	@Override
-	public T[] toArray() {
-		
-		@SuppressWarnings("unchecked")
-		T[] result = (T[]) new Object[this.size()];
-		
-		if(getPrevious() == null || getPrevious().isEmpty()) {
-		
-		toArrayRecursive(result, this, 0);
-		return result;
-		
-		} else
-			return getPrevious().toArray();
-		
 	}
 
 	public RecursiveDoubleLinkedListImpl<T> getPrevious() {

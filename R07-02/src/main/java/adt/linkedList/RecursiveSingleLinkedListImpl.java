@@ -37,7 +37,6 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 					return getData();
 				else
 					return next.search(element);
-
 			}
 		}
 		return null;
@@ -53,7 +52,6 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 				next.insert(element);
 			}
 		}
-
 	}
 
 	@Override

@@ -17,3 +17,13 @@
   <level>FINE</level>
   <message>File 116210967-THIAGO SANTOS DE MOURA.zip was received. It was sent by THIAGO SANTOS DE MOURA from IP 192.168.25.75</message>
 </record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2018-06-06T22:33:54.087-0300</date>
+  <logger>THIAGO SANTOS DE MOURA</logger>
+  <level>FINE</level>
+  <message>File 116210967-THIAGO SANTOS DE MOURA.zip was received. It was sent by THIAGO SANTOS DE MOURA from IP 192.168.25.75</message>
+</record>

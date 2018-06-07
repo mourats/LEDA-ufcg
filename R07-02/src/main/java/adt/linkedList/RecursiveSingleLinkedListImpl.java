@@ -48,7 +48,7 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 		if (element != null) {
 			if (isEmpty()) {
 				setData(element);
-				setNext(new RecursiveSingleLinkedListImpl<>());
+				setNext(new RecursiveSingleLinkedListImpl<T>());
 			} else {
 				next.insert(element);
 			}
@@ -78,7 +78,7 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 		return result;
 	}
 
-	private void toArrayRecursive(T[] array, RecursiveSingleLinkedListImpl<T> node, int cont) {
+	protected void toArrayRecursive(T[] array, RecursiveSingleLinkedListImpl<T> node, int cont) {
 		if (!node.isEmpty()) {
 			array[cont] = node.getData();
 			toArrayRecursive(array, node.next, ++cont);

@@ -98,7 +98,7 @@ public class HashtableClosedAddressImpl<T> extends AbstractHashtableClosedAddres
 				this.elements--;
 
 				if (elementTable.isEmpty())
-					elementTable = null;
+					this.table[index] = null;
 			}
 		}
 	}

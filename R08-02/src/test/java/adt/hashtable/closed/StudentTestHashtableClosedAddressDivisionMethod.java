@@ -49,6 +49,8 @@ public class StudentTestHashtableClosedAddressDivisionMethod {
 							// vazia
 		assertEquals(0, table2.getCOLLISIONS());
 		assertEquals(2, table2.indexOf(103));
+		
+		table2.insert(-100);
 	}
 
 	@Test
@@ -68,12 +70,19 @@ public class StudentTestHashtableClosedAddressDivisionMethod {
 		// busca um elemento existente. compara a posicao
 		assertEquals(new Integer(305), table1.search(305));
 		assertEquals(2, table1.indexOf(305));
+		
+		
+		table2.insert(new Integer(105));
+		// busca um elemento existente. compara a posicao
+		assertEquals(new Integer(105), table2.search(105));
+		assertEquals(4, table2.indexOf(105));
 
 	}
 
 	@Test
 	public void testIsEmpty() {
 		assertFalse(table1.isEmpty());
+		assertTrue(table2.isEmpty());
 	}
 
 	@Test
@@ -84,5 +93,6 @@ public class StudentTestHashtableClosedAddressDivisionMethod {
 	@Test
 	public void testSize() {
 		assertEquals(80, table1.size());
+		assertEquals(0, table2.size());
 	}
 }

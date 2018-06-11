@@ -51,6 +51,11 @@ public class StudentTestHashtableClosedAddressDivisionMethod {
 		assertEquals(2, table2.indexOf(103));
 		
 		table2.insert(-100);
+		table2.insert(100);
+		//não deve funcionar
+		table2.insert(100);
+		assertEquals(1, table2.getCOLLISIONS());
+		
 	}
 
 	@Test

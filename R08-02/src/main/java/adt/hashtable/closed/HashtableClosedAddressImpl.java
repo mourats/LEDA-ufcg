@@ -71,12 +71,15 @@ public class HashtableClosedAddressImpl<T> extends AbstractHashtableClosedAddres
 				elementTable = new LinkedList<T>();
 				elementTable.add(element);
 				this.table[index] = elementTable;
+				this.elements++;
 			} else {
-				elementTable.add(element);
-				this.COLLISIONS++;
+				if (!elementTable.contains(element)) {
+					elementTable.add(element);
+					this.COLLISIONS++;
+					this.elements++;
+				}
 			}
 
-			this.elements++;
 		}
 	}
 

@@ -1,6 +1,7 @@
 package adt.hashtable.open;
 
 import adt.hashtable.hashfunction.HashFunctionClosedAddressMethod;
+import adt.hashtable.hashfunction.HashFunctionOpenAddress;
 import adt.hashtable.hashfunction.HashFunctionQuadraticProbing;
 
 public class HashtableOpenAddressQuadraticProbingImpl<T extends Storable>
@@ -15,25 +16,84 @@ public class HashtableOpenAddressQuadraticProbingImpl<T extends Storable>
 
 	@Override
 	public void insert(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+
+		if (isFull())
+			throw new HashtableOverflowException();
+
+		if (element != null) {
+
+			int cont = 0;
+			boolean guard = true;
+			int index = -1;
+
+			while (guard && cont < capacity()) {
+				index = ((HashFunctionOpenAddress<T>) this.hashFunction).hash(element, cont++);
+				if (this.table[index] == null || this.table[index].equals(new DELETED())) {
+					this.table[index] = element;
+					this.elements++;
+					guard = false;
+				} else
+					this.COLLISIONS++;
+			}
+		}
 	}
 
 	@Override
 	public void remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+
+		if (element != null) {
+
+			int cont = 0;
+			boolean guard = true;
+			int index;
+
+			while (guard && cont < capacity()) {
+				index = ((HashFunctionOpenAddress<T>) this.hashFunction).hash(element, cont++);
+				if (this.table[index] != null && this.table[index].equals(element)) {
+					this.table[index] = new DELETED();
+					this.elements--;
+					guard = false;
+				}
+			}
+		}
 	}
 
 	@Override
 	public T search(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (element != null) {
+
+			int cont = 0;
+			boolean guard = true;
+			int index;
+			T result = null;
+
+			while (guard && cont < capacity()) {
+				index = ((HashFunctionOpenAddress<T>) this.hashFunction).hash(element, cont++);
+				if (this.table[index] != null && this.table[index].equals(element)) {
+					result = (T) this.table[index];
+					guard = false;
+				}
+			}
+			return result;
+		}
+		return null;
 	}
 
 	@Override
 	public int indexOf(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+
+		int cont = 0;
+		boolean guard = true;
+		int index;
+		int result = -1;
+
+		while (guard && cont < capacity()) {
+			index = ((HashFunctionOpenAddress<T>) this.hashFunction).hash(element, cont++);
+			if (this.table[index] != null && this.table[index].equals(element)) {
+				result = index;
+				guard = false;
+			}
+		}
+		return result;
 	}
 }

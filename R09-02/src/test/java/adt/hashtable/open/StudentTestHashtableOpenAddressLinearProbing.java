@@ -1,14 +1,14 @@
 package adt.hashtable.open;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import adt.hashtable.hashfunction.HashFunctionClosedAddressMethod;
-import adt.hashtable.open.AbstractHashtableOpenAddress;
-import adt.hashtable.open.HashtableElement;
-import adt.hashtable.open.HashtableOpenAddressLinearProbingImpl;
 
 public class StudentTestHashtableOpenAddressLinearProbing {
 
@@ -59,21 +59,23 @@ public class StudentTestHashtableOpenAddressLinearProbing {
 
 	@Test
 	public void testRemove() {
+		assertEquals(0, table1.getCOLLISIONS());
 		table1.remove(new HashtableElement(12)); // elemento inexistente
 		assertEquals(4, table1.size());
 
 		table1.remove(new HashtableElement(5)); // elemento existente
 		assertEquals(3, table1.size());
 		assertNull(table1.search(new HashtableElement(5)));
-
+		assertEquals(0, table1.getCOLLISIONS());
 	}
 
 	@Test
 	public void testSearch() {
+		
 		assertEquals(new HashtableElement(5),
 				table1.search(new HashtableElement(5))); // elemento que existe
 		assertNull(table1.search(new HashtableElement(15))); // elemento que nao
-																// existe
+		assertEquals(0, table1.getCOLLISIONS());					// existe
 	}
 
 	@Test
@@ -86,6 +88,14 @@ public class StudentTestHashtableOpenAddressLinearProbing {
 		assertTrue(table1.isEmpty());
 
 		assertTrue(table2.isEmpty());
+		
+		table1.remove(new HashtableElement(4));
+		
+		table1.insert(new HashtableElement(2));
+		assertEquals(2, table1.indexOf(new HashtableElement(2)));
+		table1.insert(new HashtableElement(14));
+		assertEquals(4, table1.indexOf(new HashtableElement(14)));
+		assertEquals(0, table1.getCOLLISIONS());
 	}
 
 	@Test
@@ -101,6 +111,22 @@ public class StudentTestHashtableOpenAddressLinearProbing {
 
 		assertFalse(table2.isFull());
 	}
+	
+	@Test(expected = HashtableOverflowException.class)
+	public void testOverFlow() {
+		assertFalse(table1.isFull());
+		table1.insert(new HashtableElement(1)); // enche a tabela
+		table1.insert(new HashtableElement(6));
+		table1.insert(new HashtableElement(7));
+		table1.insert(new HashtableElement(8));
+		table1.insert(new HashtableElement(9));
+		table1.insert(new HashtableElement(10));
+		
+		//quebra aqui
+		table1.insert(new HashtableElement(12));
+
+	}
+	
 
 	@Test
 	public void testSize() {

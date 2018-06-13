@@ -13,6 +13,16 @@ public interface LinkedList<T> {
 	 * @return the number of elements on the list
 	 */
 	public int size();
+	
+	/**
+	 * @return the index of the element;
+	 */
+	public int indexOf(T element);
+	
+	/**
+	 * @return the index of the element;
+	 */
+	public int lastIndexOf(T element);
 
 	/**
 	 * Searches for a given element in the list.
@@ -41,6 +51,14 @@ public interface LinkedList<T> {
 	 */
 	public void remove(T element);
 
+	/**
+	 * Removes an element of the index from the list. If the index does not exist the list
+	 * is not changed.
+	 * 
+	 * @param element
+	 *            the element to be removed
+	 */
+	public void removeIndex(int index);
 	/**
 	 * Returns an array containing all elements in the structure. The array does
 	 * not contain empty spaces (or null elements). The elements are put into

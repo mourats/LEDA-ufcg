@@ -22,7 +22,7 @@ public class StudentLinkedListTest {
 	}
 
 	private void getImplementations() {
-		
+
 		lista1 = new SingleLinkedListImpl<Integer>();
 		lista2 = new SingleLinkedListImpl<Integer>();
 	}
@@ -60,11 +60,50 @@ public class StudentLinkedListTest {
 	}
 
 	@Test
+	public void testIndexOf() {
+		Assert.assertEquals(2, lista1.indexOf(1));
+		lista1.insert(5);
+		Assert.assertEquals(3, lista1.indexOf(5));
+		lista1.insert(7);
+		Assert.assertEquals(4, lista1.indexOf(7));
+		Assert.assertEquals(0, lista1.indexOf(3));
+		Assert.assertEquals(-1, lista1.indexOf(10));
+	}
+
+	@Test
+	public void testLastIndexOf() {
+		lista1.insert(3);
+		Assert.assertEquals(3, lista1.lastIndexOf(3));
+		lista1.insert(5);
+		Assert.assertEquals(4, lista1.lastIndexOf(5));
+		lista1.insert(2);
+		Assert.assertEquals(5, lista1.lastIndexOf(2));
+		Assert.assertEquals(-1, lista1.lastIndexOf(10));
+	}
+
+	@Test
 	public void testRemove() {
 		Assert.assertEquals(3, lista1.size());
 		lista1.remove(2);
 		lista1.remove(1);
 		Assert.assertEquals(1, lista1.size());
+
+	}
+
+	@Test
+	public void testRemoveIndex() {
+		Assert.assertArrayEquals(new Integer[] { 3, 2, 1 }, lista1.toArray());
+		lista1.removeIndex(0);
+		Assert.assertArrayEquals(new Integer[] { 2, 1 }, lista1.toArray());
+		lista1.removeIndex(1);
+		Assert.assertArrayEquals(new Integer[] { 2 }, lista1.toArray());
+		lista1.removeIndex(0);
+		Assert.assertArrayEquals(new Integer[] {}, lista1.toArray());
+		lista1.insert(10);
+		lista1.insert(12);
+		Assert.assertArrayEquals(new Integer[] { 10, 12 }, lista1.toArray());
+		lista1.removeIndex(1);
+		Assert.assertArrayEquals(new Integer[] { 10 }, lista1.toArray());
 
 	}
 

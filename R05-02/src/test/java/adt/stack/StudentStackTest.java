@@ -29,9 +29,9 @@ public class StudentStackTest {
 
 	private void getImplementations() {
 
-		stack1 = new StackImpl<Integer>(5);
-		stack2 = new StackImpl<Integer>(5);
-		stack3 = new StackImpl<Integer>(5);
+		stack1 = new StackUsingQueue<Integer>(5);
+		stack2 = new StackUsingQueue<Integer>(5);
+		stack3 = new StackUsingQueue<Integer>(5);
 	}
 
 	// MÉTODOS DE TESTE

@@ -64,15 +64,20 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 		if (element != null && !this.isEmpty()) {
 
-			SingleLinkedListNode<T> aux = this.head;
+			if (head.getData().equals(element)) {
+				head = head.next;
+			} else {
 
-			boolean removed = false;
-			while (!aux.isNIL() && !removed) {
-				if (aux.getNext().getData().equals(element)) {
-					aux.setNext(aux.getNext().getNext());
-					removed = true;
+				SingleLinkedListNode<T> aux = this.head;
+
+				boolean removed = false;
+				while (!aux.getNext().isNIL() && !removed) {
+					if (aux.getNext().getData().equals(element)) {
+						aux.setNext(aux.getNext().getNext());
+						removed = true;
+					}
+					aux = aux.getNext();
 				}
-				aux = aux.getNext();
 			}
 		}
 	}

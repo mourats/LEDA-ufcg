@@ -8,7 +8,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	protected BSTNode<T> root;
 
 	public BSTImpl() {
-		root = new BSTNode.Builder().build();
+		this.root = new BSTNode.Builder().build();
 	}
 
 	public BSTNode<T> getRoot() {
@@ -64,12 +64,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public void insert(T element) {
-		if (isEmpty()) {
-			root.setData(element);
-			root.setLeft(new BSTNode.Builder().parent(this.root).build());
-			root.setRight(new BSTNode.Builder().parent(this.root).build());
-		} else
-			insertRec(root, element);
+		insertRec(this.root, element);
 	}
 
 	private void insertRec(BSTNode<T> node, T element) {
@@ -215,7 +210,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		List<T> aux = new ArrayList<T>();
 
 		if (!this.isEmpty()) {
-			preOrderRec(root, aux);
+			preOrderRec(this.root, aux);
 
 			aux.toArray(arrayResult);
 		}
@@ -239,7 +234,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		List<T> aux = new ArrayList<T>();
 
 		if (!this.isEmpty()) {
-			OrderRec(root, aux);
+			OrderRec(this.root, aux);
 
 			aux.toArray(arrayResult);
 		}
@@ -263,8 +258,8 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		List<T> aux = new ArrayList<T>();
 
 		if (!this.isEmpty()) {
-			postOrderRec(root, aux);
-			
+			postOrderRec(this.root, aux);
+
 			aux.toArray(arrayResult);
 		}
 		return arrayResult;
@@ -285,7 +280,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	 */
 	@Override
 	public int size() {
-		return size(root);
+		return size(this.root);
 	}
 
 	private int size(BSTNode<T> node) {

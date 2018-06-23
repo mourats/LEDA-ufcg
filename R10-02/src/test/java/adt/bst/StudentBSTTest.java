@@ -22,7 +22,7 @@ public class StudentBSTTest {
 
 	@Before
 	public void setUp() {
-		tree = new BSTImpl<>();
+		tree = new BSTImpl<Integer>();
 	}
 
 	@Test
@@ -56,6 +56,7 @@ public class StudentBSTTest {
 	@Test
 	public void testMinMax() {
 		tree.insert(6);
+		assertEquals(new Integer(6), tree.getRoot().getData());
 		assertEquals(new Integer(6), tree.minimum().getData());
 		assertEquals(new Integer(6), tree.maximum().getData());
 
@@ -74,6 +75,10 @@ public class StudentBSTTest {
 		tree.insert(9);
 		assertEquals(new Integer(-34), tree.minimum().getData());
 		assertEquals(new Integer(23), tree.maximum().getData());
+		
+		fillTree(); // -40 -34 0 2 5 6 9 12 23 67 76 232
+		assertEquals(new Integer(-40), tree.minimum().getData());
+		assertEquals(new Integer(232), tree.maximum().getData());
 	}
 
 	@Test
@@ -82,6 +87,7 @@ public class StudentBSTTest {
 		fillTree(); // -40 -34 0 2 5 6 9 12 23 67 76 232
 
 		assertEquals(null, tree.predecessor(-40));
+		assertEquals(null, tree.sucessor(232));
 		assertEquals(new Integer(-34), tree.sucessor(-40).getData());
 
 		assertEquals(new Integer(-40), tree.predecessor(-34).getData());
@@ -111,8 +117,7 @@ public class StudentBSTTest {
 	public void testHeight() {
 		fillTree(); // -40 -34 0 2 5 6 9 12 23 67 76 232
 
-		Integer[] preOrder = new Integer[] { 6, -34, -40, 5, 2, 0, 23, 9, 12,
-				76, 67, 232 };
+		Integer[] preOrder = new Integer[] { 6, -34, -40, 5, 2, 0, 23, 9, 12, 76, 67, 232 };
 		assertArrayEquals(preOrder, tree.preOrder());
 		assertEquals(4, tree.height());
 

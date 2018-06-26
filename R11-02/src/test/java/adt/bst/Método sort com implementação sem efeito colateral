@@ -1,0 +1,23 @@
+	@Override
+	public T[] sort(T[] array) {
+		
+		T[] arrayTree = order();
+		
+		while(!isEmpty())
+			remove(this.root.getData());
+		
+		for (T element : array) {
+			insert(element);
+		}
+		
+		T[] arrayResult = (T[]) order();
+		
+		while(!isEmpty())
+			remove(this.root.getData());
+		
+		for (T element : arrayTree) {
+			insert(element);
+		}
+		
+		return arrayResult;
+	}

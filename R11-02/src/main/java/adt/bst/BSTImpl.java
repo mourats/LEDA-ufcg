@@ -8,7 +8,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	protected BSTNode<T> root;
 
 	public BSTImpl() {
-		this.root = new BSTNode.Builder().build();
+		this.root = new BSTNode<T>();
 	}
 
 	public BSTNode<T> getRoot() {
@@ -45,7 +45,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			return new BSTNode.Builder().build();
 	}
 
-	private BSTNode<T> searchRec(BSTNode<T> node, T element) {
+	protected BSTNode<T> searchRec(BSTNode<T> node, T element) {
 
 		BSTNode<T> nodeResult;
 
@@ -67,7 +67,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		insertRec(this.root, element);
 	}
 
-	private void insertRec(BSTNode<T> node, T element) {
+	protected void insertRec(BSTNode<T> node, T element) {
 		if (node.isEmpty()) {
 			node.setData(element);
 			node.setLeft(new BSTNode.Builder().parent(node).build());
@@ -89,7 +89,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			return maximumRec(this.root);
 	}
 
-	private BSTNode<T> maximumRec(BSTNode<T> node) {
+	protected BSTNode<T> maximumRec(BSTNode<T> node) {
 		if (!node.getRight().isEmpty()) {
 			return maximumRec((BSTNode<T>) node.getRight());
 		} else
@@ -104,7 +104,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			return minimumRec(this.root);
 	}
 
-	private BSTNode<T> minimumRec(BSTNode<T> node) {
+	protected BSTNode<T> minimumRec(BSTNode<T> node) {
 		if (!node.getLeft().isEmpty()) {
 			return minimumRec((BSTNode<T>) node.getLeft());
 		} else

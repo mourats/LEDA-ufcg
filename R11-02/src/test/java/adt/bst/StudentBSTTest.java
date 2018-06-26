@@ -2,10 +2,13 @@ package adt.bst;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import adt.bst.BSTImpl;
+import adt.bst.extended.SortComparatorBSTImpl;
 import adt.bt.BTNode;
 
 public class StudentBSTTest {
@@ -22,7 +25,7 @@ public class StudentBSTTest {
 
 	@Before
 	public void setUp() {
-		tree = new BSTImpl<>();
+		tree = new SortComparatorBSTImpl<Integer>((o1, o2) -> o1 - o2);
 	}
 
 	@Test
@@ -56,6 +59,7 @@ public class StudentBSTTest {
 	@Test
 	public void testMinMax() {
 		tree.insert(6);
+		assertEquals(new Integer(6), tree.getRoot().getData());
 		assertEquals(new Integer(6), tree.minimum().getData());
 		assertEquals(new Integer(6), tree.maximum().getData());
 
@@ -74,6 +78,10 @@ public class StudentBSTTest {
 		tree.insert(9);
 		assertEquals(new Integer(-34), tree.minimum().getData());
 		assertEquals(new Integer(23), tree.maximum().getData());
+
+		fillTree(); // -40 -34 0 2 5 6 9 12 23 67 76 232
+		assertEquals(new Integer(-40), tree.minimum().getData());
+		assertEquals(new Integer(232), tree.maximum().getData());
 	}
 
 	@Test
@@ -82,6 +90,7 @@ public class StudentBSTTest {
 		fillTree(); // -40 -34 0 2 5 6 9 12 23 67 76 232
 
 		assertEquals(null, tree.predecessor(-40));
+		assertEquals(null, tree.sucessor(232));
 		assertEquals(new Integer(-34), tree.sucessor(-40).getData());
 
 		assertEquals(new Integer(-40), tree.predecessor(-34).getData());
@@ -111,8 +120,7 @@ public class StudentBSTTest {
 	public void testHeight() {
 		fillTree(); // -40 -34 0 2 5 6 9 12 23 67 76 232
 
-		Integer[] preOrder = new Integer[] { 6, -34, -40, 5, 2, 0, 23, 9, 12,
-				76, 67, 232 };
+		Integer[] preOrder = new Integer[] { 6, -34, -40, 5, 2, 0, 23, 9, 12, 76, 67, 232 };
 		assertArrayEquals(preOrder, tree.preOrder());
 		assertEquals(4, tree.height());
 
@@ -152,4 +160,23 @@ public class StudentBSTTest {
 		assertEquals(new Integer(-34), tree.search(-34).getData());
 		assertEquals(NIL, tree.search(2534));
 	}
+
+	@Test
+	public void testSort() {
+
+		fillTree();
+		Integer[] array = { 3, 2, 1, 0, -1, -9 };
+		Integer[] arrayOrdenado = { -9, -1, 0, 1, 2, 3 };
+
+		assertArrayEquals(arrayOrdenado, ((SortComparatorBSTImpl<Integer>) tree).sort(array));
+	}
+
+	@Test
+	public void testReverseOrdem() {
+		fillTree(); // -40 -34 0 2 5 6 9 12 23 67 76 232
+
+		Integer[] order = { 232, 76, 67, 23, 12, 9, 6, 5, 2, 0, -34, -40 };
+		assertArrayEquals(order, ((SortComparatorBSTImpl<Integer>) tree).reverseOrder());
+	}
+
 }

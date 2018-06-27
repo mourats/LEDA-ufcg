@@ -177,6 +177,10 @@ public class StudentBSTTest {
 
 		Integer[] order = { 232, 76, 67, 23, 12, 9, 6, 5, 2, 0, -34, -40 };
 		assertArrayEquals(order, ((SortComparatorBSTImpl<Integer>) tree).reverseOrder());
+		Integer[] array = { 3, 2, 1, 0, -1, -9 };
+		((SortComparatorBSTImpl<Integer>) tree).sort(array);
+		assertArrayEquals(new Integer[] { 3, 2, 1, 0, -1, -9 }, ((SortComparatorBSTImpl<Integer>) tree).reverseOrder());
+
 	}
 
 }

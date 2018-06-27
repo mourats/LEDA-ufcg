@@ -102,11 +102,11 @@ public class SortComparatorBSTImpl<T extends Comparable<T>> extends BSTImpl<T> i
 	@Override
 	public T[] sort(T[] array) {
 
-		while (!isEmpty())
-			remove(this.root.getData());
+		while (!this.isEmpty())
+			this.remove(this.root.getData());
 
 		for (T element : array) {
-			insert(element);
+			this.insert(element);
 		}
 
 		return this.order();

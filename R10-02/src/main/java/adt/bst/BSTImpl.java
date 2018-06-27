@@ -22,7 +22,6 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public int height() {
-
 		return heightRec(this.root, -1);
 	}
 

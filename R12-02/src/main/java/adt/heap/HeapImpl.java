@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import util.Util;
+
 /**
  * O comportamento de qualquer heap é definido pelo heapify. Neste caso o
  * heapify dessa heap deve comparar os elementos e colocar o maior sempre no
@@ -80,8 +82,19 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 	 * (comparados usando o comparator) elementos na parte de cima da heap.
 	 */
 	private void heapify(int position) {
-		// TODO Implement htis method.
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int left = this.left(position);
+		int right = this.right(position);
+		int bigger = position;
+
+		if (left <= index && this.comparator.compare(this.heap[left], this.heap[position]) > 0)
+			bigger = left;
+		if (right <= index && this.comparator.compare(this.heap[right], this.heap[bigger]) > 0)
+			bigger = right;
+		if (bigger != position) {
+			Util.swap(this.heap, position, bigger);
+			heapify(bigger);
+		}
+
 	}
 
 	@Override
@@ -94,15 +107,19 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 		if (element != null) {
 			index = index + 1;
 			this.heap[index] = element;
-			if (index > 0)
-				this.heapify(parent(index));
+
+			this.heapify(parent(index));
 		}
 	}
 
 	@Override
 	public void buildHeap(T[] array) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		this.heap = array;
+		index = array.length - 1;
+
+		for (int i = array.length / 2; i >= 0; i--) {
+			this.heapify(i);
+		}
 	}
 
 	@Override
@@ -130,8 +147,28 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 
 	@Override
 	public T[] heapsort(T[] array) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+
+		Comparator<T> comparatorAux = getComparator();
+		this.setComparator((o1, o2) -> o2.compareTo(o1));
+
+		this.buildHeap(array);
+
+		@SuppressWarnings("unchecked")
+		T[] arrayAux = (T[]) (new Comparable[this.size()]);
+
+		for (int index = 0; index < arrayAux.length; index++) {
+			arrayAux[index] = this.extractRootElement();
+		}
+
+		resetHeap(comparatorAux);
+
+		return arrayAux;
+	}
+
+	private void resetHeap(Comparator<T> comparatorAux) {
+		this.setComparator(comparatorAux);
+		this.heap = (T[]) (new Comparable[INITIAL_SIZE]);
+
 	}
 
 	@Override

@@ -95,6 +95,10 @@ public class StudentMaxHeapTest {
 
 		Arrays.sort(expected);
 		Arrays.sort(original);
+		System.out.println(Arrays.toString(original));
+
+		System.out.println(Arrays.toString(expected));
+
 
 		if (Arrays.equals(expected, original) == false)
 			isHeap = false;

@@ -70,7 +70,7 @@ public class StudentMaxHeapTest {
 		assertEquals(new Integer(45), heap.extractRootElement());
 		assertEquals(new Integer(40), heap.extractRootElement());
 		assertEquals(new Integer(38), heap.extractRootElement());
-
+		
 		assertEquals(5, heap.size());
 		assertFalse(heap.isEmpty());
 
@@ -95,11 +95,7 @@ public class StudentMaxHeapTest {
 
 		Arrays.sort(expected);
 		Arrays.sort(original);
-		System.out.println(Arrays.toString(original));
-
-		System.out.println(Arrays.toString(expected));
-
-
+	
 		if (Arrays.equals(expected, original) == false)
 			isHeap = false;
 

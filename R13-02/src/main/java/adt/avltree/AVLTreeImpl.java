@@ -27,6 +27,7 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements 
 
 	// AUXILIARY
 	protected void rebalance(BSTNode<T> node) {
+		
 		int balance = calculateBalance(node);
 		if (balance < -1) {
 			if (calculateBalance((BSTNode<T>) node.getRight()) > 0) {
@@ -41,22 +42,6 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements 
 		}
 	}
 
-	private void leftRotation(BSTNode<T> node) {
-
-		if (node.equals(this.getRoot())) {
-			root = Util.leftRotation(node);
-		} else {
-
-			BSTNode<T> aux = Util.leftRotation(node);
-
-			if (aux.getData().compareTo(aux.getParent().getData()) < 0) {
-				aux.getParent().setLeft(aux);
-			} else {
-				aux.getParent().setRight(aux);
-			}
-		}
-	}
-
 	private void rightRotation(BSTNode<T> node) {
 
 		if (node.equals(this.getRoot())) {
@@ -65,11 +50,25 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements 
 
 			BSTNode<T> aux = Util.rightRotation(node);
 
-			if (aux.getData().compareTo(aux.getParent().getData()) > 0) {
+			if (aux.getData().compareTo(aux.getParent().getData()) > 0)
 				aux.getParent().setRight(aux);
-			} else {
+			else
 				aux.getParent().setLeft(aux);
-			}
+		}
+	}
+
+	private void leftRotation(BSTNode<T> node) {
+
+		if (node.equals(this.getRoot()))
+			root = Util.leftRotation(node);
+		else {
+
+			BSTNode<T> aux = Util.leftRotation(node);
+
+			if (aux.getData().compareTo(aux.getParent().getData()) < 0)
+				aux.getParent().setLeft(aux);
+			else
+				aux.getParent().setRight(aux);
 		}
 	}
 
@@ -81,11 +80,6 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements 
 			rebalance(parent);
 			parent = (BSTNode<T>) parent.getParent();
 		}
-	}
-
-	@Override
-	public void insert(T element) {
-		insertRec(root, element);
 	}
 
 	@Override

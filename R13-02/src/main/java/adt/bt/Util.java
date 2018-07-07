@@ -19,7 +19,7 @@ public class Util {
 		pivot.getLeft().setParent(node);
 		pivot.setLeft(node);
 		
-		return (BSTNode<T>) node.getRight();
+		return (BSTNode<T>) pivot;
 	}
 
 	/**
@@ -36,8 +36,7 @@ public class Util {
 		pivot.getRight().setParent(node);
 		pivot.setRight(node);
 		
-
-		return (BSTNode<T>) node.getLeft();
+		return (BSTNode<T>) pivot;
 	}
 
 	public static <T extends Comparable<T>> T[] makeArrayOfComparable(int size) {

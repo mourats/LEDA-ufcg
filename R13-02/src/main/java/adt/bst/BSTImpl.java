@@ -26,7 +26,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		return heightRec(this.root, -1);
 	}
 
-	private int heightRec(BSTNode<T> node, int currentHeight) {
+	protected int heightRec(BSTNode<T> node, int currentHeight) {
 
 		if (!node.isEmpty()) {
 			int left = heightRec((BSTNode<T>) node.getLeft(), currentHeight + 1);
@@ -45,7 +45,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			return new BSTNode.Builder().build();
 	}
 
-	protected BSTNode<T> searchRec(BSTNode<T> node, T element) {
+	private BSTNode<T> searchRec(BSTNode<T> node, T element) {
 
 		BSTNode<T> nodeResult;
 
@@ -89,7 +89,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			return maximumRec(this.root);
 	}
 
-	protected BSTNode<T> maximumRec(BSTNode<T> node) {
+	private BSTNode<T> maximumRec(BSTNode<T> node) {
 		if (!node.getRight().isEmpty()) {
 			return maximumRec((BSTNode<T>) node.getRight());
 		} else
@@ -104,7 +104,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			return minimumRec(this.root);
 	}
 
-	protected BSTNode<T> minimumRec(BSTNode<T> node) {
+	private BSTNode<T> minimumRec(BSTNode<T> node) {
 		if (!node.getLeft().isEmpty()) {
 			return minimumRec((BSTNode<T>) node.getLeft());
 		} else
@@ -196,7 +196,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		}
 	}
 
-	private boolean hasOneChild(BSTNode<T> node) {
+	protected boolean hasOneChild(BSTNode<T> node) {
 
 		return ((node.getRight().isEmpty() && !node.getLeft().isEmpty()
 				|| node.getLeft().isEmpty() && !node.getRight().isEmpty()));

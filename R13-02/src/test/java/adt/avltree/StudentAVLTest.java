@@ -16,7 +16,7 @@ public class StudentAVLTest {
 	public void setUp() {
 		avl = new AVLTreeImpl<>();
 	}
-
+/*
 	@Test
 	public void testInit() {
 		assertTrue(avl.isEmpty());
@@ -44,7 +44,7 @@ public class StudentAVLTest {
 		assertEquals(3, avl.size());
 		assertEquals(1, avl.height());
 		assertArrayEquals(new Integer[] { -10, -15, 20 }, avl.preOrder());
-	}
+	}*/
 
 	@Test
 	public void testRemove() {

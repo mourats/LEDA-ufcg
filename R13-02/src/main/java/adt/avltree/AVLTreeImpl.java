@@ -34,4 +34,16 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Not implemented yet!");
 	}
+	
+	@Override
+	public void insert(T element) {
+		// TODO Auto-generated method stub
+		super.insert(element);
+	}
+	
+	@Override
+	public void remove(T element) {
+		// TODO Auto-generated method stub
+		super.remove(element);
+	}
 }

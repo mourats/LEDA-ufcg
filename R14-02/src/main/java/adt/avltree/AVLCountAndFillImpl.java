@@ -1,7 +1,8 @@
 package adt.avltree;
 
+import java.util.Arrays;
+
 import adt.bst.BSTNode;
-import adt.bt.Util;
 
 public class AVLCountAndFillImpl<T extends Comparable<T>> extends AVLTreeImpl<T> implements AVLCountAndFill<T> {
 
@@ -64,39 +65,21 @@ public class AVLCountAndFillImpl<T extends Comparable<T>> extends AVLTreeImpl<T>
 
    @Override
    public void fillWithoutRebalance(T[] array) {
+
+      Arrays.sort(array);
       quickInsert(array, 0, array.length - 1);
    }
 
    private void quickInsert(T[] array, int leftIndex, int rightIndex) {
 
       if (leftIndex < rightIndex) {
-         int pivotIndex = partition(array, leftIndex, rightIndex);
+         int mediana = ((rightIndex + leftIndex) / 2);
 
-         this.insert(array[pivotIndex]);
+         this.insert(array[mediana]);
 
-         quickInsert(array, leftIndex, pivotIndex - 1);
-         quickInsert(array, pivotIndex + 1, rightIndex);
+         quickInsert(array, leftIndex, mediana - 1);
+         quickInsert(array, mediana + 1, rightIndex);
+
       }
-   }
-
-   private int partition(T[] array, int leftIndex, int rightIndex) {
-
-      int inicio = leftIndex + 1;
-      int fim = rightIndex;
-
-      while (inicio <= fim) {
-
-         if (array[inicio].compareTo(array[leftIndex]) <= 0)
-            inicio++;
-         else if (array[fim].compareTo(array[leftIndex]) > 0)
-            fim--;
-         else {
-            Util.swap(array, inicio, fim);
-            inicio++;
-            fim--;
-         }
-      }
-      Util.swap(array, leftIndex, fim);
-      return fim;
    }
 }

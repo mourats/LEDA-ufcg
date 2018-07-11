@@ -42,7 +42,7 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements 
 		}
 	}
 
-	private void rightRotation(BSTNode<T> node) {
+	protected void rightRotation(BSTNode<T> node) {
 
 		if (node.equals(this.getRoot())) {
 			root = Util.rightRotation(node);
@@ -57,7 +57,7 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements 
 		}
 	}
 
-	private void leftRotation(BSTNode<T> node) {
+	protected void leftRotation(BSTNode<T> node) {
 
 		if (node.equals(this.getRoot()))
 			root = Util.leftRotation(node);

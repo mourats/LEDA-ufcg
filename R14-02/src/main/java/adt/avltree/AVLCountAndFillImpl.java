@@ -76,13 +76,26 @@ public class AVLCountAndFillImpl<T extends Comparable<T>> extends AVLTreeImpl<T>
 	private void quickInsert(T[] array, int leftIndex, int rightIndex) {
 
 		if (leftIndex <= rightIndex) {
-			int mediana = ((rightIndex + leftIndex) / 2);
 
-			this.insert(array[mediana]);
-			
-			quickInsert(array, leftIndex, mediana - 1);
-			quickInsert(array, mediana + 1, rightIndex);
+			int middle = (rightIndex + leftIndex) / 2;
+			super.insert(array[middle]);
 
+			Thread thread = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					quickInsert(array, leftIndex, middle - 1);
+				}
+			});
+
+			Thread thread2 = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					quickInsert(array, middle + 1, rightIndex);
+				}
+			});
+
+			thread.start();
+			thread2.start();
 		}
 	}
 }

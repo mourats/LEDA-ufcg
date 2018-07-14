@@ -4,14 +4,14 @@ public class SkipListNode<T> {
 
 	// a chave do root eh Integer.MIN_VALUE e a do NIL eh Integer.MAX_VALUE
 	protected int key;
-	protected T value;
 	protected SkipListNode<T>[] forward;
+	protected T value;
 
 	@SuppressWarnings("unchecked")
 	public SkipListNode(int key, int height, T satelliteData) {
 		this.key = key;
-		this.value = satelliteData;
 		this.forward = new SkipListNode[height];
+		this.value = satelliteData;
 	}
 
 	public int height() {
@@ -34,8 +34,7 @@ public class SkipListNode<T> {
 	public String toString() {
 		String result = "";
 		if (this.key == Integer.MIN_VALUE) {
-			result = "<ROOT," + this.forward.length + "," + this.countForwardsNotNull()
-					+ ">";
+			result = "<ROOT," + this.forward.length + "," + this.countForwardsNotNull() + ">";
 		} else if (this.key == Integer.MAX_VALUE) {
 			result = "<NIL," + this.forward.length + ">";
 		} else {
@@ -51,8 +50,7 @@ public class SkipListNode<T> {
 		if (obj instanceof SkipListNode) {
 			resp = this.key == ((SkipListNode<T>) obj).key
 					&& this.forward.length == ((SkipListNode<T>) obj).forward.length
-					&& this.countForwardsNotNull() == ((SkipListNode<T>) obj)
-							.countForwardsNotNull();
+					&& this.countForwardsNotNull() == ((SkipListNode<T>) obj).countForwardsNotNull();
 		}
 		return resp;
 	}

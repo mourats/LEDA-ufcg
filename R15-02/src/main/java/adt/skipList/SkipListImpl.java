@@ -31,6 +31,7 @@ public class SkipListImpl<T> implements SkipList<T> {
 	@Override
 	public void insert(int key, T newValue, int height) {
 
+		@SuppressWarnings("unchecked")
 		SkipListNode<T>[] update = new SkipListNode[this.maxHeight];
 
 		SkipListNode<T> aux = this.root;
@@ -57,6 +58,7 @@ public class SkipListImpl<T> implements SkipList<T> {
 	@Override
 	public void remove(int key) {
 
+		@SuppressWarnings("unchecked")
 		SkipListNode<T>[] update = new SkipListNode[this.maxHeight];
 		SkipListNode<T> aux = this.root;
 
@@ -71,8 +73,9 @@ public class SkipListImpl<T> implements SkipList<T> {
 		if (aux.getKey() == key) {
 
 			int index = 0;
-			while (index < this.maxHeight && update[index].forward[index] != aux) {
+			while (index < this.maxHeight && update[index].forward[index] == aux) {
 				update[index].forward[index] = aux.forward[index];
+				index++;
 			}
 		}
 	}
@@ -125,9 +128,11 @@ public class SkipListImpl<T> implements SkipList<T> {
 	@Override
 	public SkipListNode<T>[] toArray() {
 
+		@SuppressWarnings("unchecked")
 		SkipListNode<T>[] array = new SkipListNode[this.size() + 2];
 		SkipListNode<T> aux = this.root;
 		int index = 0;
+		
 		while (index != this.size() + 2) {
 			array[index] = aux;
 			aux = aux.forward[0];

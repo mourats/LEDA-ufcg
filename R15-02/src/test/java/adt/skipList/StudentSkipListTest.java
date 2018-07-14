@@ -123,7 +123,7 @@ public class StudentSkipListTest {
 		skip.remove(0);
 		skip.remove(15);
 		skip.remove(5);
-
+		System.out.println(Arrays.toString(skip.toArray()));
 		assertEquals(5, skip.size());
 
 		array = skip.toArray();

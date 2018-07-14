@@ -123,7 +123,7 @@ public class StudentSkipListTest {
 		skip.remove(0);
 		skip.remove(15);
 		skip.remove(5);
-		System.out.println(Arrays.toString(skip.toArray()));
+		//System.out.println(Arrays.toString(skip.toArray()));
 		assertEquals(5, skip.size());
 
 		array = skip.toArray();
@@ -153,4 +153,25 @@ public class StudentSkipListTest {
 		assertEquals("[<ROOT,4,4>, <NIL,4>]", Arrays.toString(array));
 		assertEquals(Integer.MAX_VALUE, array[0].getForward(0).getKey());
 	}
+	
+	@Test
+	public void testHeight() {
+		
+		assertEquals(0, skip.height());
+		
+		skip.insert(10, "A", 2);
+		assertEquals(2, skip.height());
+		
+		skip.insert(20, "B", 1);
+		assertEquals(2, skip.height());
+		
+		skip.insert(0, "C", 1);
+		assertEquals(2, skip.height());
+		skip.insert(15, "D", 3);
+		assertEquals(3, skip.height());
+		skip.insert(5, "E", 3);
+		assertEquals(3, skip.height());
+	}
+
+	
 }

@@ -115,15 +115,18 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 		}
 	}
 
-	@Override
-	public void buildHeap(T[] array) {
-		this.heap = array;
-		index = array.length - 1;
-
-		for (int i = array.length / 2; i >= 0; i--) {
-			this.heapify(i);
-		}
-	}
+    @Override
+    public void buildHeap(T[] array) {
+        if (array == null)
+            return;
+ 
+        this.heap = array;
+        this.index = array.length - 1;
+ 
+        for (int i = this.index; i >= 0; i--) {
+            this.heapify(i);
+        }
+    }
 
 	@Override
 	public T extractRootElement() {

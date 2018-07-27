@@ -19,6 +19,10 @@ public class BTNode<T> {
 
 	public BTNode() {
 	}
+	
+	public BTNode(BTNode<T> parent) {
+		this.parent = parent;
+	}
 
 	public boolean isEmpty() {
 		return this.data == null;

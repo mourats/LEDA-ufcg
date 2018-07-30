@@ -156,5 +156,8 @@ public class StudentBSTTest {
 		assertEquals(new Integer(-40), tree.search(-40).getData());
 		assertEquals(new Integer(-34), tree.search(-34).getData());
 		assertEquals(NIL, tree.search(2534));
+		
+		
+		System.out.println(tree.isBST());
 	}
 }

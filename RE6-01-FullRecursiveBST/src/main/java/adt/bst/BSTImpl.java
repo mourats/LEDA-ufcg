@@ -3,6 +3,8 @@ package adt.bst;
 import java.util.ArrayList;
 import java.util.List;
 
+import adt.bt.BTNode;
+
 public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	protected BSTNode<T> root;
@@ -264,6 +266,31 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			result = 1 + size((BSTNode<T>) node.getLeft()) + size((BSTNode<T>) node.getRight());
 		}
 		return result;
+	}
+
+	public boolean isBST() {
+		if (!isEmpty()) {
+			return isBSTRec(this.root);
+		}
+		return true;
+	}
+
+	private boolean isBSTRec(BTNode<T> btNode) {
+		if (!btNode.getLeft().isEmpty()) {
+			if (btNode.getLeft().getData().compareTo(btNode.getData()) > 0)
+				return false;
+			else
+				return isBSTRec(btNode.getLeft());
+
+		} else if (!btNode.getLeft().isEmpty()) {
+			if (btNode.getRight().getData().compareTo(btNode.getData()) < 0)
+				return false;
+			else
+				return isBSTRec(btNode.getRight());
+		}
+		else
+			return true;
+
 	}
 
 }
